@@ -1,0 +1,7 @@
+name: 'epoch_analytics'
+version: '1.0.0'
+profile: 'epoch_analytics'
+model-paths: ["models"]
+models:
+  epoch_analytics:
+    +materialized: view

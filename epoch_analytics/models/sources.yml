@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: epoch
+    database: epoch-ai-data-center
+    schema: epoch_ai_dataset
+    tables:
+      - name: data_centers
+      - name: timelines

@@ -1,0 +1,97 @@
+id: epoch_ai_pipeline
+namespace: zoomcamp
+
+inputs:
+  - id: dataset_url
+    type: STRING
+    defaults: https://epoch.ai/data/data_centers/data_centers.csv
+
+concurrency:
+  limit: 1
+
+tasks:
+  - id: extract
+    type: io.kestra.plugin.core.http.Download
+    uri: "{{inputs.dataset_url}}"
+
+  - id: transform
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:3.11-slim
+    inputFiles:
+      data_centers.csv: "{{outputs.extract.uri}}"
+    outputFiles:
+      - centers_clean.csv
+    script: |
+      import csv
+      mapping = {
+        "Name": "name",
+        "Owner": "owner",
+        "Country": "country",
+        "Current power (MW)": "current_power_mw",
+        "Current H100 equivalents": "current_h100_equivalents",
+        "Current total capital cost (2025 USD billions)": "current_total_capital_cost_billions",
+        "Current chip types": "current_chip_types",
+        "Address": "address"
+      }
+      with open("data_centers.csv", newline="", encoding="utf-8") as fin, open("centers_clean.csv", "w", newline="", encoding="utf-8") as fout:
+        reader = csv.DictReader(fin)
+        writer = csv.DictWriter(fout, fieldnames=list(mapping.values()))
+        writer.writeheader()
+        for row in reader:
+          writer.writerow({v: row.get(k, "") for k, v in mapping.items()})
+
+  - id: load_to_postgres
+    type: io.kestra.plugin.jdbc.postgresql.CopyIn
+    format: CSV
+    from: "{{outputs.transform.outputFiles['centers_clean.csv']}}"
+    table: public.data_centers_raw
+    header: true
+    columns: [name, owner, country, current_power_mw, current_h100_equivalents, current_total_capital_cost_billions, current_chip_types, address]
+    
+  - id: extract_timelines
+    type: io.kestra.plugin.core.http.Download
+    uri: https://epoch.ai/data/data_centers/data_center_timelines.csv
+
+  - id: transform_timelines
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:3.11-slim
+    inputFiles:
+      timelines.csv: "{{outputs.extract_timelines.uri}}"
+    outputFiles:
+      - timelines_clean.csv
+    script: |
+      import csv
+      mapping = {
+        "Data center": "data_center",
+        "Date": "date",
+        "Construction status": "construction_status",
+        "Power (MW)": "power_mw",
+        "H100 equivalents": "h100_equivalents"
+      }
+      with open("timelines.csv", newline="", encoding="utf-8") as fin, open("timelines_clean.csv", "w", newline="", encoding="utf-8") as fout:
+        reader = csv.DictReader(fin)
+        writer = csv.DictWriter(fout, fieldnames=list(mapping.values()))
+        writer.writeheader()
+        for row in reader:
+          writer.writerow({v: row.get(k, "") for k, v in mapping.items()})
+
+  - id: load_timelines_to_postgres
+    type: io.kestra.plugin.jdbc.postgresql.CopyIn
+    format: CSV
+    from: "{{outputs.transform_timelines.outputFiles['timelines_clean.csv']}}"
+    table: public.data_center_timelines_raw
+    header: true
+    columns: [data_center, date, construction_status, power_mw, h100_equivalents]
+
+
+pluginDefaults:
+  - type: io.kestra.plugin.jdbc.postgresql
+    values:
+      url: jdbc:postgresql://pgdatabase:5432/ny_taxi
+      username: root
+      password: root
+
+triggers:
+  - id: daily_epoch
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "0 9 * * *"

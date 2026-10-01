@@ -1,0 +1,829 @@
+[0m23:31:59.115151 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4B0795010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4AE291450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4B306F9D0>]}
+
+
+============================== 23:31:59.121427 | 5b118480-a7c7-4421-b100-301ca5635ad2 ==============================
+[0m23:31:59.121427 [info ] [MainThread]: Running with dbt=1.12.5
+[0m23:31:59.122017 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt debug', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m23:31:59.157078 [info ] [MainThread]: dbt version: 1.12.5
+[0m23:31:59.157601 [info ] [MainThread]: python version: 3.14.3
+[0m23:31:59.158088 [info ] [MainThread]: python path: C:\Users\lexdw\AppData\Local\Python\pythoncore-3.14-64\python.exe
+[0m23:31:59.158519 [info ] [MainThread]: os info: Windows-11-10.0.26300-SP0
+[0m23:32:04.249775 [info ] [MainThread]: Using profiles dir at C:\Users\lexdw\.dbt
+[0m23:32:04.250371 [info ] [MainThread]: Using profiles.yml file at C:\Users\lexdw\.dbt\profiles.yml
+[0m23:32:04.250795 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\dbt_project.yml
+[0m23:32:04.251227 [info ] [MainThread]: adapter type: bigquery
+[0m23:32:04.251672 [info ] [MainThread]: adapter version: 1.12.1
+[0m23:32:04.350121 [info ] [MainThread]: Configuration:
+[0m23:32:04.350737 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m23:32:04.351261 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m23:32:04.351715 [info ] [MainThread]: Required dependencies:
+[0m23:32:04.352061 [debug] [MainThread]: Executing "git --help"
+[0m23:32:04.418193 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m23:32:04.418707 [debug] [MainThread]: STDERR: "b''"
+[0m23:32:04.419174 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m23:32:04.419570 [info ] [MainThread]: Connection:
+[0m23:32:04.419959 [info ] [MainThread]:   method: service-account-json
+[0m23:32:04.420289 [info ] [MainThread]:   database: epoch-ai-data-center
+[0m23:32:04.420609 [info ] [MainThread]:   execution_project: epoch-ai-data-center
+[0m23:32:04.420993 [info ] [MainThread]:   schema: epoch_ai_dataset
+[0m23:32:04.421323 [info ] [MainThread]:   location: US
+[0m23:32:04.421664 [info ] [MainThread]:   priority: None
+[0m23:32:04.422028 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m23:32:04.422335 [info ] [MainThread]:   reservation: None
+[0m23:32:04.422746 [info ] [MainThread]:   impersonate_service_account: None
+[0m23:32:04.423215 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m23:32:04.423623 [info ] [MainThread]:   job_retries: 1
+[0m23:32:04.423979 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m23:32:04.425224 [info ] [MainThread]:   job_execution_timeout_seconds: None
+[0m23:32:04.425846 [info ] [MainThread]:   job_link_info_level_log: False
+[0m23:32:04.426337 [info ] [MainThread]:   timeout_seconds: None
+[0m23:32:04.426724 [info ] [MainThread]:   client_id: None
+[0m23:32:04.427088 [info ] [MainThread]:   token_uri: None
+[0m23:32:04.427424 [info ] [MainThread]:   compute_region: None
+[0m23:32:04.427745 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m23:32:04.428054 [info ] [MainThread]:   gcs_bucket: None
+[0m23:32:04.428366 [info ] [MainThread]:   dataproc_batch: None
+[0m23:32:04.428974 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m23:32:05.262974 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m23:32:05.263398 [debug] [MainThread]: On debug: select 1 as id
+[0m23:32:05.263756 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:32:05.264111 [debug] [MainThread]: BigQuery adapter: Got an error when attempting to create a bigquery " "client: ''NoneType' object has no attribute 'keys''
+[0m23:32:05.264450 [debug] [MainThread]: BigQuery adapter: Unhandled error while running:
+select 1 as id
+[0m23:32:05.264716 [debug] [MainThread]: BigQuery adapter: Database Error
+  'NoneType' object has no attribute 'keys'
+[0m23:32:05.264980 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m23:32:05.265410 [info ] [MainThread]: [31m1 check failed:[0m
+[0m23:32:05.265903 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >'NoneType' object has no attribute 'close'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m23:32:05.267698 [debug] [MainThread]: Command `dbt debug` failed at 23:32:05.267523 after 6.39 seconds
+[0m23:32:05.268144 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4CEE36190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4CEFD97F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4CEF3F460>]}
+[0m23:32:05.268564 [debug] [MainThread]: Flushing usage events
+[0m23:32:06.975983 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:36:03.632565 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000250F2BD5010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000250F06C1450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000250F54AF9D0>]}
+
+
+============================== 23:36:03.637365 | bec4cb53-dfe9-4cae-bb8f-06e2276b70ae ==============================
+[0m23:36:03.637365 [info ] [MainThread]: Running with dbt=1.12.5
+[0m23:36:03.638052 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt debug', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m23:36:03.663619 [info ] [MainThread]: dbt version: 1.12.5
+[0m23:36:03.664240 [info ] [MainThread]: python version: 3.14.3
+[0m23:36:03.664634 [info ] [MainThread]: python path: C:\Users\lexdw\AppData\Local\Python\pythoncore-3.14-64\python.exe
+[0m23:36:03.664998 [info ] [MainThread]: os info: Windows-11-10.0.26300-SP0
+[0m23:36:05.297355 [info ] [MainThread]: Using profiles dir at C:\Users\lexdw\.dbt
+[0m23:36:05.297929 [info ] [MainThread]: Using profiles.yml file at C:\Users\lexdw\.dbt\profiles.yml
+[0m23:36:05.298348 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\dbt_project.yml
+[0m23:36:05.298747 [info ] [MainThread]: adapter type: bigquery
+[0m23:36:05.299184 [info ] [MainThread]: adapter version: 1.12.1
+[0m23:36:05.397957 [info ] [MainThread]: Configuration:
+[0m23:36:05.398518 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m23:36:05.398931 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m23:36:05.399306 [info ] [MainThread]: Required dependencies:
+[0m23:36:05.399647 [debug] [MainThread]: Executing "git --help"
+[0m23:36:05.472305 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m23:36:05.472805 [debug] [MainThread]: STDERR: "b''"
+[0m23:36:05.473217 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m23:36:05.473632 [info ] [MainThread]: Connection:
+[0m23:36:05.474006 [info ] [MainThread]:   method: service-account
+[0m23:36:05.474403 [info ] [MainThread]:   database: epoch-ai-data-center
+[0m23:36:05.474819 [info ] [MainThread]:   execution_project: epoch-ai-data-center
+[0m23:36:05.475196 [info ] [MainThread]:   schema: epoch_ai_dataset
+[0m23:36:05.475520 [info ] [MainThread]:   location: US
+[0m23:36:05.475841 [info ] [MainThread]:   priority: None
+[0m23:36:05.476162 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m23:36:05.476479 [info ] [MainThread]:   reservation: None
+[0m23:36:05.476821 [info ] [MainThread]:   impersonate_service_account: None
+[0m23:36:05.477161 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m23:36:05.477483 [info ] [MainThread]:   job_retries: 1
+[0m23:36:05.477799 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m23:36:05.478111 [info ] [MainThread]:   job_execution_timeout_seconds: None
+[0m23:36:05.478461 [info ] [MainThread]:   job_link_info_level_log: False
+[0m23:36:05.478796 [info ] [MainThread]:   timeout_seconds: None
+[0m23:36:05.479117 [info ] [MainThread]:   client_id: None
+[0m23:36:05.479463 [info ] [MainThread]:   token_uri: None
+[0m23:36:05.479788 [info ] [MainThread]:   compute_region: None
+[0m23:36:05.480158 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m23:36:05.480512 [info ] [MainThread]:   gcs_bucket: None
+[0m23:36:05.480856 [info ] [MainThread]:   dataproc_batch: None
+[0m23:36:05.481584 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m23:36:06.273653 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m23:36:06.274056 [debug] [MainThread]: On debug: select 1 as id
+[0m23:36:06.274401 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:36:08.623916 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:918a7c63-092c-4ed3-9be2-3d43e0c18dda&page=queryresults
+[0m23:36:09.035293 [debug] [MainThread]: SQL status: OK in 0.411 seconds
+[0m23:36:12.598790 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m23:36:12.599520 [info ] [MainThread]: [32mAll checks passed![0m
+[0m23:36:12.601168 [debug] [MainThread]: Command `dbt debug` succeeded at 23:36:12.600978 after 9.14 seconds
+[0m23:36:12.601650 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m23:36:12.602139 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002509147D940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000250F0400EF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002509157DF20>]}
+[0m23:36:12.602754 [debug] [MainThread]: Flushing usage events
+[0m23:36:14.274351 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:40:59.243582 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E74B05010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E72601450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E7742B9D0>]}
+
+
+============================== 23:40:59.249236 | 99c826cf-731e-4287-a904-ec9f360f2adf ==============================
+[0m23:40:59.249236 [info ] [MainThread]: Running with dbt=1.12.5
+[0m23:40:59.249887 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m23:41:01.921218 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '99c826cf-731e-4287-a904-ec9f360f2adf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E132D8B00>]}
+[0m23:41:01.981155 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '99c826cf-731e-4287-a904-ec9f360f2adf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E72614AF0>]}
+[0m23:41:01.982092 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m23:41:02.842107 [debug] [MainThread]: checksum: 7ace3d800d7c6d8c85c7a384062ac357aed9d0797236fe53002107a382963fdc, vars: {}, profile: epoch_analytics, target: dev, version: 1.12.5
+[0m23:41:02.843673 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m23:41:02.844313 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '99c826cf-731e-4287-a904-ec9f360f2adf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E1328A950>]}
+[0m23:41:05.013330 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Compilation Error
+  Model 'model.epoch_analytics.stg_data_centers' (models\stg_data_centers.sql) depends on a source named 'epoch.data_centers' which was not found
+[0m23:41:05.014718 [debug] [MainThread]: Command `dbt run` failed at 23:41:05.014589 after 5.91 seconds
+[0m23:41:05.015085 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E15025040>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E15024F50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000020E13F12890>]}
+[0m23:41:05.015455 [debug] [MainThread]: Flushing usage events
+[0m23:41:06.611649 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:43:55.841608 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A9046D5010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A902231590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A906FFF9D0>]}
+
+
+============================== 23:43:55.846524 | 080f897a-22db-48b2-8b32-3ca60b992996 ==============================
+[0m23:43:55.846524 [info ] [MainThread]: Running with dbt=1.12.5
+[0m23:43:55.847175 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt run', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m23:43:57.616116 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A922D78B00>]}
+[0m23:43:57.675409 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A902244AF0>]}
+[0m23:43:57.676439 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m23:43:58.500700 [debug] [MainThread]: checksum: 7ace3d800d7c6d8c85c7a384062ac357aed9d0797236fe53002107a382963fdc, vars: {}, profile: epoch_analytics, target: dev, version: 1.12.5
+[0m23:43:58.501872 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m23:43:58.502418 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A922D2A950>]}
+[0m23:43:59.666786 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A924B65E50>]}
+[0m23:43:59.761144 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m23:43:59.765998 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m23:43:59.814501 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m23:43:59.835083 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A925022270>]}
+[0m23:43:59.835563 [info ] [MainThread]: Found 2 models, 2 sources, 561 macros
+[0m23:43:59.836018 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A925068460>]}
+[0m23:43:59.838351 [info ] [MainThread]: 
+[0m23:43:59.838836 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m23:43:59.839246 [info ] [MainThread]: 
+[0m23:43:59.839930 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m23:43:59.844297 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center'
+[0m23:43:59.845009 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:44:01.796911 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_epoch_ai_dataset'
+[0m23:44:01.797323 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:44:03.973297 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A924FC1550>]}
+[0m23:44:03.973771 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:44:04.025108 [debug] [Thread-3 (]: Began running node model.epoch_analytics.stg_data_centers
+[0m23:44:04.025705 [info ] [Thread-3 (]: 1 of 2 START sql view model epoch_ai_dataset.stg_data_centers .................. [RUN]
+[0m23:44:04.026317 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.epoch_analytics.stg_data_centers'
+[0m23:44:04.026642 [debug] [Thread-3 (]: Began compiling node model.epoch_analytics.stg_data_centers
+[0m23:44:04.031758 [debug] [Thread-3 (]: Writing injected SQL for node "model.epoch_analytics.stg_data_centers"
+[0m23:44:04.034790 [debug] [Thread-3 (]: Began executing node model.epoch_analytics.stg_data_centers
+[0m23:44:04.063947 [debug] [Thread-3 (]: Writing runtime sql for node "model.epoch_analytics.stg_data_centers"
+[0m23:44:04.066921 [debug] [Thread-3 (]: On model.epoch_analytics.stg_data_centers: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.stg_data_centers"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+  OPTIONS()
+  as select name, owner, country, current_power_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`data_centers` where country is not null;
+
+
+[0m23:44:04.067442 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m23:44:05.953509 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:5bc2644b-ee3f-4575-945b-3a9187a4f869&page=queryresults
+[0m23:44:07.076998 [debug] [Thread-3 (]: SQL status: OK in 1.123 seconds
+[0m23:44:07.214524 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A904B87D80>]}
+[0m23:44:07.215187 [info ] [Thread-3 (]: 1 of 2 OK created sql view model epoch_ai_dataset.stg_data_centers ............. [[32mCREATE VIEW (0 processed)[0m in 3.19s]
+[0m23:44:07.215941 [debug] [Thread-3 (]: Finished running node model.epoch_analytics.stg_data_centers
+[0m23:44:07.216629 [debug] [Thread-4 (]: Began running node model.epoch_analytics.mart_country_power
+[0m23:44:07.217095 [info ] [Thread-4 (]: 2 of 2 START sql view model epoch_ai_dataset.mart_country_power ................ [RUN]
+[0m23:44:07.217761 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_country_power'
+[0m23:44:07.218143 [debug] [Thread-4 (]: Began compiling node model.epoch_analytics.mart_country_power
+[0m23:44:07.219818 [debug] [Thread-4 (]: Writing injected SQL for node "model.epoch_analytics.mart_country_power"
+[0m23:44:07.221008 [debug] [Thread-4 (]: Began executing node model.epoch_analytics.mart_country_power
+[0m23:44:07.223880 [debug] [Thread-4 (]: Writing runtime sql for node "model.epoch_analytics.mart_country_power"
+[0m23:44:07.225765 [debug] [Thread-4 (]: On model.epoch_analytics.mart_country_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_country_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_country_power`
+  OPTIONS()
+  as select country, sum(current_power_mw) as total_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers` group by country order by total_mw desc;
+
+
+[0m23:44:07.226518 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m23:44:09.147975 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:7e4648e7-6727-48b1-9b55-31ab237e16d4&page=queryresults
+[0m23:44:09.891362 [debug] [Thread-4 (]: SQL status: OK in 0.743 seconds
+[0m23:44:09.895773 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '080f897a-22db-48b2-8b32-3ca60b992996', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A9257999F0>]}
+[0m23:44:09.896397 [info ] [Thread-4 (]: 2 of 2 OK created sql view model epoch_ai_dataset.mart_country_power ........... [[32mCREATE VIEW (0 processed)[0m in 2.68s]
+[0m23:44:09.897192 [debug] [Thread-4 (]: Finished running node model.epoch_analytics.mart_country_power
+[0m23:44:09.898935 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m23:44:09.945839 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m23:44:09.946233 [debug] [MainThread]: Connection 'list_epoch-ai-data-center' was properly closed.
+[0m23:44:09.946516 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_epoch_ai_dataset' was properly closed.
+[0m23:44:09.946773 [debug] [MainThread]: Connection 'model.epoch_analytics.stg_data_centers' was properly closed.
+[0m23:44:09.947013 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_country_power' was properly closed.
+[0m23:44:09.947345 [info ] [MainThread]: 
+[0m23:44:09.947827 [info ] [MainThread]: Finished running 2 view models in 0 hours 0 minutes and 10.11 seconds (10.11s).
+[0m23:44:09.948860 [debug] [MainThread]: Command end result
+[0m23:44:09.981957 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m23:44:09.985855 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m23:44:09.989416 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m23:44:09.996218 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\run_results.json
+[0m23:44:09.996586 [info ] [MainThread]: 
+[0m23:44:09.997029 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m23:44:09.997469 [info ] [MainThread]: 
+[0m23:44:09.998213 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=2
+[0m23:44:09.999333 [debug] [MainThread]: Command `dbt run` succeeded at 23:44:09.999190 after 14.31 seconds
+[0m23:44:09.999762 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A9250241D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A925024350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A907075400>]}
+[0m23:44:10.000193 [debug] [MainThread]: Flushing usage events
+[0m23:44:11.633834 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:52:55.327002 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002243D535010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002243B025590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002243FE639D0>]}
+
+
+============================== 23:52:55.333133 | 5a60f33e-8cd7-4b31-8a5d-6edcb2437daf ==============================
+[0m23:52:55.333133 [info ] [MainThread]: Running with dbt=1.12.5
+[0m23:52:55.333785 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m23:52:58.002918 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245BBE8B00>]}
+[0m23:52:58.064799 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002243B038AF0>]}
+[0m23:52:58.065810 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m23:52:58.934092 [debug] [MainThread]: checksum: 7ace3d800d7c6d8c85c7a384062ac357aed9d0797236fe53002107a382963fdc, vars: {}, profile: epoch_analytics, target: dev, version: 1.12.5
+[0m23:52:59.126201 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m23:52:59.126735 [debug] [MainThread]: Partial parsing: added file: epoch_analytics://models\mart_yearly_power.sql
+[0m23:52:59.397492 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245C0F1450>]}
+[0m23:52:59.495651 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m23:52:59.500564 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m23:52:59.549110 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m23:52:59.569829 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245C5CE210>]}
+[0m23:52:59.570310 [info ] [MainThread]: Found 3 models, 2 sources, 561 macros
+[0m23:52:59.570755 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245C5BAA50>]}
+[0m23:52:59.572653 [info ] [MainThread]: 
+[0m23:52:59.573255 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m23:52:59.573833 [info ] [MainThread]: 
+[0m23:52:59.574593 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m23:52:59.578910 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center'
+[0m23:52:59.579309 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:53:01.499619 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_epoch_ai_dataset'
+[0m23:53:01.500117 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:53:03.575682 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002243FEF6000>]}
+[0m23:53:03.576128 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:53:03.626463 [debug] [Thread-3 (]: Began running node model.epoch_analytics.mart_yearly_power
+[0m23:53:03.627160 [debug] [Thread-4 (]: Began running node model.epoch_analytics.stg_data_centers
+[0m23:53:03.627681 [info ] [Thread-3 (]: 1 of 3 START sql view model epoch_ai_dataset.mart_yearly_power ................. [RUN]
+[0m23:53:03.628876 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_yearly_power'
+[0m23:53:03.629228 [debug] [Thread-3 (]: Began compiling node model.epoch_analytics.mart_yearly_power
+[0m23:53:03.634845 [debug] [Thread-3 (]: Writing injected SQL for node "model.epoch_analytics.mart_yearly_power"
+[0m23:53:03.628259 [info ] [Thread-4 (]: 2 of 3 START sql view model epoch_ai_dataset.stg_data_centers .................. [RUN]
+[0m23:53:03.635559 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.epoch_analytics.stg_data_centers'
+[0m23:53:03.635993 [debug] [Thread-4 (]: Began compiling node model.epoch_analytics.stg_data_centers
+[0m23:53:03.637874 [debug] [Thread-4 (]: Writing injected SQL for node "model.epoch_analytics.stg_data_centers"
+[0m23:53:03.638502 [debug] [Thread-3 (]: Began executing node model.epoch_analytics.mart_yearly_power
+[0m23:53:03.665498 [debug] [Thread-3 (]: Writing runtime sql for node "model.epoch_analytics.mart_yearly_power"
+[0m23:53:03.666308 [debug] [Thread-4 (]: Began executing node model.epoch_analytics.stg_data_centers
+[0m23:53:03.668495 [debug] [Thread-4 (]: Writing runtime sql for node "model.epoch_analytics.stg_data_centers"
+[0m23:53:03.669281 [debug] [Thread-3 (]: On model.epoch_analytics.mart_yearly_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_yearly_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_yearly_power`
+  OPTIONS()
+  as select extract(year from date) as tahun, sum(power_mw) as total_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`timelines`
+where date is not null
+group by tahun order by tahun;
+
+
+[0m23:53:03.669959 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m23:53:03.670544 [debug] [Thread-4 (]: On model.epoch_analytics.stg_data_centers: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.stg_data_centers"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+  OPTIONS()
+  as select name, owner, country, current_power_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`data_centers` where country is not null;
+
+
+[0m23:53:03.715970 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m23:53:05.798931 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:9c06eb50-1a7e-423d-886a-57fb1aba8f60&page=queryresults
+[0m23:53:06.084793 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:75e5a8b6-69c8-44c9-ae21-4727a12c09c7&page=queryresults
+[0m23:53:06.540307 [debug] [Thread-4 (]: SQL status: OK in 0.741 seconds
+[0m23:53:06.680500 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245C5DEBD0>]}
+[0m23:53:06.681270 [info ] [Thread-4 (]: 2 of 3 OK created sql view model epoch_ai_dataset.stg_data_centers ............. [[32mCREATE VIEW (0 processed)[0m in 3.04s]
+[0m23:53:06.682070 [debug] [Thread-4 (]: Finished running node model.epoch_analytics.stg_data_centers
+[0m23:53:06.682707 [debug] [Thread-5 (]: Began running node model.epoch_analytics.mart_country_power
+[0m23:53:06.683121 [info ] [Thread-5 (]: 3 of 3 START sql view model epoch_ai_dataset.mart_country_power ................ [RUN]
+[0m23:53:06.683697 [debug] [Thread-5 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_country_power'
+[0m23:53:06.684026 [debug] [Thread-5 (]: Began compiling node model.epoch_analytics.mart_country_power
+[0m23:53:06.685714 [debug] [Thread-5 (]: Writing injected SQL for node "model.epoch_analytics.mart_country_power"
+[0m23:53:06.686904 [debug] [Thread-5 (]: Began executing node model.epoch_analytics.mart_country_power
+[0m23:53:06.689862 [debug] [Thread-5 (]: Writing runtime sql for node "model.epoch_analytics.mart_country_power"
+[0m23:53:06.691636 [debug] [Thread-5 (]: On model.epoch_analytics.mart_country_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_country_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_country_power`
+  OPTIONS()
+  as select country, sum(current_power_mw) as total_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers` group by country order by total_mw desc;
+
+
+[0m23:53:06.692456 [debug] [Thread-5 (]: Opening a new connection, currently in state init
+[0m23:53:06.865174 [debug] [Thread-3 (]: SQL status: OK in 0.780 seconds
+[0m23:53:06.869508 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245C6AE0A0>]}
+[0m23:53:06.870132 [info ] [Thread-3 (]: 1 of 3 OK created sql view model epoch_ai_dataset.mart_yearly_power ............ [[32mCREATE VIEW (0 processed)[0m in 3.24s]
+[0m23:53:06.871037 [debug] [Thread-3 (]: Finished running node model.epoch_analytics.mart_yearly_power
+[0m23:53:08.567648 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:77f2a883-7351-419a-a6a0-ed60c281c460&page=queryresults
+[0m23:53:09.316632 [debug] [Thread-5 (]: SQL status: OK in 0.748 seconds
+[0m23:53:09.320598 [debug] [Thread-5 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '5a60f33e-8cd7-4b31-8a5d-6edcb2437daf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245DD09310>]}
+[0m23:53:09.321130 [info ] [Thread-5 (]: 3 of 3 OK created sql view model epoch_ai_dataset.mart_country_power ........... [[32mCREATE VIEW (0 processed)[0m in 2.64s]
+[0m23:53:09.321827 [debug] [Thread-5 (]: Finished running node model.epoch_analytics.mart_country_power
+[0m23:53:09.323293 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m23:53:09.370296 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m23:53:09.370669 [debug] [MainThread]: Connection 'list_epoch-ai-data-center' was properly closed.
+[0m23:53:09.370920 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_epoch_ai_dataset' was properly closed.
+[0m23:53:09.371159 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_yearly_power' was properly closed.
+[0m23:53:09.371412 [debug] [MainThread]: Connection 'model.epoch_analytics.stg_data_centers' was properly closed.
+[0m23:53:09.371809 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_country_power' was properly closed.
+[0m23:53:09.372208 [info ] [MainThread]: 
+[0m23:53:09.372699 [info ] [MainThread]: Finished running 3 view models in 0 hours 0 minutes and 9.80 seconds (9.80s).
+[0m23:53:09.373622 [debug] [MainThread]: Command end result
+[0m23:53:09.404858 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m23:53:09.408838 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m23:53:09.412757 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m23:53:09.419948 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\run_results.json
+[0m23:53:09.420342 [info ] [MainThread]: 
+[0m23:53:09.420852 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m23:53:09.421248 [info ] [MainThread]: 
+[0m23:53:09.421647 [info ] [MainThread]: Done. PASS=3 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=3
+[0m23:53:09.422800 [debug] [MainThread]: Command `dbt run` succeeded at 23:53:09.422675 after 14.29 seconds
+[0m23:53:09.423212 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245C5EC3D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002245C5EC450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002243FED1400>]}
+[0m23:53:09.423544 [debug] [MainThread]: Flushing usage events
+[0m23:53:12.200100 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m00:33:56.781124 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7DA595010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7D80B5590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7DCEBF9D0>]}
+
+
+============================== 00:33:56.788664 | c894c45a-6c5b-4f16-8551-569dfd43c163 ==============================
+[0m00:33:56.788664 [info ] [MainThread]: Running with dbt=1.12.5
+[0m00:33:56.789401 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'use_colors': 'True', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m00:33:59.717183 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7F8C28B00>]}
+[0m00:33:59.789616 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7D80C8AF0>]}
+[0m00:33:59.790618 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m00:34:00.625880 [debug] [MainThread]: checksum: 7ace3d800d7c6d8c85c7a384062ac357aed9d0797236fe53002107a382963fdc, vars: {}, profile: epoch_analytics, target: dev, version: 1.12.5
+[0m00:34:00.811835 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m00:34:00.812405 [debug] [MainThread]: Partial parsing: added file: epoch_analytics://models\mart_owner_power.sql
+[0m00:34:01.066875 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7F9131450>]}
+[0m00:34:01.150329 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m00:34:01.154407 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m00:34:01.194688 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m00:34:01.211876 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7F960E210>]}
+[0m00:34:01.212336 [info ] [MainThread]: Found 4 models, 2 sources, 561 macros
+[0m00:34:01.212753 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7F9612890>]}
+[0m00:34:01.214613 [info ] [MainThread]: 
+[0m00:34:01.215071 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m00:34:01.215519 [info ] [MainThread]: 
+[0m00:34:01.216075 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m00:34:01.220048 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center'
+[0m00:34:01.220477 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m00:34:03.154655 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_epoch_ai_dataset'
+[0m00:34:03.155229 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m00:34:05.389743 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7DCF56000>]}
+[0m00:34:05.390425 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m00:34:05.455777 [debug] [Thread-3 (]: Began running node model.epoch_analytics.mart_yearly_power
+[0m00:34:05.456384 [debug] [Thread-4 (]: Began running node model.epoch_analytics.stg_data_centers
+[0m00:34:05.457312 [info ] [Thread-3 (]: 1 of 4 START sql view model epoch_ai_dataset.mart_yearly_power ................. [RUN]
+[0m00:34:05.459746 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_yearly_power'
+[0m00:34:05.460429 [debug] [Thread-3 (]: Began compiling node model.epoch_analytics.mart_yearly_power
+[0m00:34:05.458328 [info ] [Thread-4 (]: 2 of 4 START sql view model epoch_ai_dataset.stg_data_centers .................. [RUN]
+[0m00:34:05.468799 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.epoch_analytics.stg_data_centers'
+[0m00:34:05.469354 [debug] [Thread-4 (]: Began compiling node model.epoch_analytics.stg_data_centers
+[0m00:34:05.468093 [debug] [Thread-3 (]: Writing injected SQL for node "model.epoch_analytics.mart_yearly_power"
+[0m00:34:05.472702 [debug] [Thread-4 (]: Writing injected SQL for node "model.epoch_analytics.stg_data_centers"
+[0m00:34:05.474803 [debug] [Thread-3 (]: Began executing node model.epoch_analytics.mart_yearly_power
+[0m00:34:05.492835 [debug] [Thread-4 (]: Began executing node model.epoch_analytics.stg_data_centers
+[0m00:34:05.511233 [debug] [Thread-4 (]: Writing runtime sql for node "model.epoch_analytics.stg_data_centers"
+[0m00:34:05.507063 [debug] [Thread-3 (]: Writing runtime sql for node "model.epoch_analytics.mart_yearly_power"
+[0m00:34:05.513642 [debug] [Thread-3 (]: On model.epoch_analytics.mart_yearly_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_yearly_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_yearly_power`
+  OPTIONS()
+  as select extract(year from date) as tahun, sum(power_mw) as total_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`timelines`
+where date is not null
+group by tahun order by tahun;
+
+
+[0m00:34:05.514543 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m00:34:05.570780 [debug] [Thread-4 (]: On model.epoch_analytics.stg_data_centers: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.stg_data_centers"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+  OPTIONS()
+  as select name, owner, country, current_power_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`data_centers` where country is not null;
+
+
+[0m00:34:05.571352 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m00:34:07.553025 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:63fd37ca-723c-412a-949d-77eb8e6d940f&page=queryresults
+[0m00:34:07.738774 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:5370ca0c-0a3a-4a94-ad82-f748fb43ab81&page=queryresults
+[0m00:34:08.320751 [debug] [Thread-3 (]: SQL status: OK in 0.767 seconds
+[0m00:34:08.447233 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7F9621E50>]}
+[0m00:34:08.447962 [info ] [Thread-3 (]: 1 of 4 OK created sql view model epoch_ai_dataset.mart_yearly_power ............ [[32mCREATE VIEW (0 processed)[0m in 2.99s]
+[0m00:34:08.448778 [debug] [Thread-3 (]: Finished running node model.epoch_analytics.mart_yearly_power
+[0m00:34:08.468700 [debug] [Thread-4 (]: SQL status: OK in 0.729 seconds
+[0m00:34:08.473245 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7F96EF330>]}
+[0m00:34:08.473860 [info ] [Thread-4 (]: 2 of 4 OK created sql view model epoch_ai_dataset.stg_data_centers ............. [[32mCREATE VIEW (0 processed)[0m in 3.00s]
+[0m00:34:08.474511 [debug] [Thread-4 (]: Finished running node model.epoch_analytics.stg_data_centers
+[0m00:34:08.475170 [debug] [Thread-5 (]: Began running node model.epoch_analytics.mart_country_power
+[0m00:34:08.475930 [debug] [Thread-6 (]: Began running node model.epoch_analytics.mart_owner_power
+[0m00:34:08.475598 [info ] [Thread-5 (]: 3 of 4 START sql view model epoch_ai_dataset.mart_country_power ................ [RUN]
+[0m00:34:08.477271 [debug] [Thread-5 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_country_power'
+[0m00:34:08.477715 [debug] [Thread-5 (]: Began compiling node model.epoch_analytics.mart_country_power
+[0m00:34:08.479480 [debug] [Thread-5 (]: Writing injected SQL for node "model.epoch_analytics.mart_country_power"
+[0m00:34:08.476498 [info ] [Thread-6 (]: 4 of 4 START sql view model epoch_ai_dataset.mart_owner_power .................. [RUN]
+[0m00:34:08.480115 [debug] [Thread-6 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_owner_power'
+[0m00:34:08.480462 [debug] [Thread-6 (]: Began compiling node model.epoch_analytics.mart_owner_power
+[0m00:34:08.482227 [debug] [Thread-6 (]: Writing injected SQL for node "model.epoch_analytics.mart_owner_power"
+[0m00:34:08.483032 [debug] [Thread-5 (]: Began executing node model.epoch_analytics.mart_country_power
+[0m00:34:08.486291 [debug] [Thread-5 (]: Writing runtime sql for node "model.epoch_analytics.mart_country_power"
+[0m00:34:08.487261 [debug] [Thread-6 (]: Began executing node model.epoch_analytics.mart_owner_power
+[0m00:34:08.490480 [debug] [Thread-6 (]: Writing runtime sql for node "model.epoch_analytics.mart_owner_power"
+[0m00:34:08.491439 [debug] [Thread-5 (]: On model.epoch_analytics.mart_country_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_country_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_country_power`
+  OPTIONS()
+  as select country, sum(current_power_mw) as total_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers` group by country order by total_mw desc;
+
+
+[0m00:34:08.492080 [debug] [Thread-5 (]: Opening a new connection, currently in state init
+[0m00:34:08.541146 [debug] [Thread-6 (]: On model.epoch_analytics.mart_owner_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_owner_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_owner_power`
+  OPTIONS()
+  as select owner, sum(current_power_mw) as total_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+where owner is not null
+group by owner order by total_mw desc limit 10;
+
+
+[0m00:34:08.541733 [debug] [Thread-6 (]: Opening a new connection, currently in state init
+[0m00:34:10.548526 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:3beb478e-3814-4059-9f25-f6ceb38a3cb7&page=queryresults
+[0m00:34:10.627068 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:1244094b-5e39-42f4-a200-9fb5a15c8480&page=queryresults
+[0m00:34:11.285571 [debug] [Thread-6 (]: SQL status: OK in 0.737 seconds
+[0m00:34:11.289480 [debug] [Thread-6 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7FAD55F90>]}
+[0m00:34:11.290016 [info ] [Thread-6 (]: 4 of 4 OK created sql view model epoch_ai_dataset.mart_owner_power ............. [[32mCREATE VIEW (0 processed)[0m in 2.81s]
+[0m00:34:11.290752 [debug] [Thread-6 (]: Finished running node model.epoch_analytics.mart_owner_power
+[0m00:34:11.355853 [debug] [Thread-5 (]: SQL status: OK in 0.728 seconds
+[0m00:34:11.359890 [debug] [Thread-5 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'c894c45a-6c5b-4f16-8551-569dfd43c163', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7FAD04ED0>]}
+[0m00:34:11.360435 [info ] [Thread-5 (]: 3 of 4 OK created sql view model epoch_ai_dataset.mart_country_power ........... [[32mCREATE VIEW (0 processed)[0m in 2.88s]
+[0m00:34:11.361301 [debug] [Thread-5 (]: Finished running node model.epoch_analytics.mart_country_power
+[0m00:34:11.362864 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m00:34:11.409672 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m00:34:11.410116 [debug] [MainThread]: Connection 'list_epoch-ai-data-center' was properly closed.
+[0m00:34:11.410380 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_epoch_ai_dataset' was properly closed.
+[0m00:34:11.410626 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_yearly_power' was properly closed.
+[0m00:34:11.410864 [debug] [MainThread]: Connection 'model.epoch_analytics.stg_data_centers' was properly closed.
+[0m00:34:11.411093 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_country_power' was properly closed.
+[0m00:34:11.411316 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_owner_power' was properly closed.
+[0m00:34:11.411654 [info ] [MainThread]: 
+[0m00:34:11.412052 [info ] [MainThread]: Finished running 4 view models in 0 hours 0 minutes and 10.20 seconds (10.20s).
+[0m00:34:11.413307 [debug] [MainThread]: Command end result
+[0m00:34:11.444596 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m00:34:11.448562 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m00:34:11.452298 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m00:34:11.459272 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\run_results.json
+[0m00:34:11.459707 [info ] [MainThread]: 
+[0m00:34:11.460159 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m00:34:11.460536 [info ] [MainThread]: 
+[0m00:34:11.460926 [info ] [MainThread]: Done. PASS=4 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=4
+[0m00:34:11.462225 [debug] [MainThread]: Command `dbt run` succeeded at 00:34:11.462092 after 14.92 seconds
+[0m00:34:11.462714 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7DCF31400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7D472A120>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D7F8C58770>]}
+[0m00:34:11.463145 [debug] [MainThread]: Flushing usage events
+[0m00:34:13.139526 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m00:42:08.483074 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E01E495010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E01BF85590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E020DC39D0>]}
+
+
+============================== 00:42:08.488095 | d9a33a2c-073c-4a2b-a9aa-2117191960f1 ==============================
+[0m00:42:08.488095 [info ] [MainThread]: Running with dbt=1.12.5
+[0m00:42:08.488773 [debug] [MainThread]: running dbt with arguments {'maximum_seed_size_mib': '1', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'version_check': 'True', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'invocation_command': 'dbt run', 'hints_enabled': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m00:42:10.401509 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03CB38B00>]}
+[0m00:42:10.463053 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E01BF98AF0>]}
+[0m00:42:10.464308 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m00:42:11.360197 [debug] [MainThread]: checksum: 7ace3d800d7c6d8c85c7a384062ac357aed9d0797236fe53002107a382963fdc, vars: {}, profile: epoch_analytics, target: dev, version: 1.12.5
+[0m00:42:11.562996 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m00:42:11.563837 [debug] [MainThread]: Partial parsing: updated file: epoch_analytics://models\stg_data_centers.sql
+[0m00:42:11.875573 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03D049450>]}
+[0m00:42:12.003753 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m00:42:12.008307 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m00:42:12.048608 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m00:42:12.065424 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03D522210>]}
+[0m00:42:12.066135 [info ] [MainThread]: Found 4 models, 2 sources, 561 macros
+[0m00:42:12.066804 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03D55A7B0>]}
+[0m00:42:12.069601 [info ] [MainThread]: 
+[0m00:42:12.070199 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m00:42:12.070681 [info ] [MainThread]: 
+[0m00:42:12.071290 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m00:42:12.076879 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center'
+[0m00:42:12.077389 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m00:42:14.801577 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_epoch_ai_dataset'
+[0m00:42:14.802025 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m00:42:16.987068 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E020E56000>]}
+[0m00:42:16.987538 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m00:42:17.039375 [debug] [Thread-3 (]: Began running node model.epoch_analytics.mart_yearly_power
+[0m00:42:17.039866 [debug] [Thread-4 (]: Began running node model.epoch_analytics.stg_data_centers
+[0m00:42:17.040332 [info ] [Thread-3 (]: 1 of 4 START sql view model epoch_ai_dataset.mart_yearly_power ................. [RUN]
+[0m00:42:17.041387 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_yearly_power'
+[0m00:42:17.041858 [debug] [Thread-3 (]: Began compiling node model.epoch_analytics.mart_yearly_power
+[0m00:42:17.040782 [info ] [Thread-4 (]: 2 of 4 START sql view model epoch_ai_dataset.stg_data_centers .................. [RUN]
+[0m00:42:17.049379 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.epoch_analytics.stg_data_centers'
+[0m00:42:17.049862 [debug] [Thread-4 (]: Began compiling node model.epoch_analytics.stg_data_centers
+[0m00:42:17.048476 [debug] [Thread-3 (]: Writing injected SQL for node "model.epoch_analytics.mart_yearly_power"
+[0m00:42:17.052266 [debug] [Thread-4 (]: Writing injected SQL for node "model.epoch_analytics.stg_data_centers"
+[0m00:42:17.053891 [debug] [Thread-4 (]: Began executing node model.epoch_analytics.stg_data_centers
+[0m00:42:17.054397 [debug] [Thread-3 (]: Began executing node model.epoch_analytics.mart_yearly_power
+[0m00:42:17.093788 [debug] [Thread-3 (]: Writing runtime sql for node "model.epoch_analytics.mart_yearly_power"
+[0m00:42:17.090076 [debug] [Thread-4 (]: Writing runtime sql for node "model.epoch_analytics.stg_data_centers"
+[0m00:42:17.095640 [debug] [Thread-4 (]: On model.epoch_analytics.stg_data_centers: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.stg_data_centers"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+  OPTIONS()
+  as select
+  name,
+  split(owner, ' #')[offset(0)] as owner,
+  country, current_power_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`data_centers`
+where country is not null;
+
+
+[0m00:42:17.096776 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m00:42:17.096283 [debug] [Thread-3 (]: On model.epoch_analytics.mart_yearly_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_yearly_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_yearly_power`
+  OPTIONS()
+  as select extract(year from date) as tahun, sum(power_mw) as total_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`timelines`
+where date is not null
+group by tahun order by tahun;
+
+
+[0m00:42:17.097360 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m00:42:19.457614 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:632aecf3-a028-433b-b493-7a6f3879a227&page=queryresults
+[0m00:42:19.528191 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:8a86371e-741b-492c-8bd9-44fdc99a4ad8&page=queryresults
+[0m00:42:20.287658 [debug] [Thread-4 (]: SQL status: OK in 0.829 seconds
+[0m00:42:20.294637 [debug] [Thread-3 (]: SQL status: OK in 0.766 seconds
+[0m00:42:20.457477 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03D536B10>]}
+[0m00:42:20.458092 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E01E947D80>]}
+[0m00:42:20.458961 [info ] [Thread-4 (]: 2 of 4 OK created sql view model epoch_ai_dataset.stg_data_centers ............. [[32mCREATE VIEW (0 processed)[0m in 3.40s]
+[0m00:42:20.460283 [debug] [Thread-4 (]: Finished running node model.epoch_analytics.stg_data_centers
+[0m00:42:20.459562 [info ] [Thread-3 (]: 1 of 4 OK created sql view model epoch_ai_dataset.mart_yearly_power ............ [[32mCREATE VIEW (0 processed)[0m in 3.41s]
+[0m00:42:20.461286 [debug] [Thread-3 (]: Finished running node model.epoch_analytics.mart_yearly_power
+[0m00:42:20.461793 [debug] [Thread-5 (]: Began running node model.epoch_analytics.mart_country_power
+[0m00:42:20.462267 [debug] [Thread-6 (]: Began running node model.epoch_analytics.mart_owner_power
+[0m00:42:20.462774 [info ] [Thread-5 (]: 3 of 4 START sql view model epoch_ai_dataset.mart_country_power ................ [RUN]
+[0m00:42:20.464260 [debug] [Thread-5 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_country_power'
+[0m00:42:20.464822 [debug] [Thread-5 (]: Began compiling node model.epoch_analytics.mart_country_power
+[0m00:42:20.463419 [info ] [Thread-6 (]: 4 of 4 START sql view model epoch_ai_dataset.mart_owner_power .................. [RUN]
+[0m00:42:20.467793 [debug] [Thread-6 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_owner_power'
+[0m00:42:20.468200 [debug] [Thread-6 (]: Began compiling node model.epoch_analytics.mart_owner_power
+[0m00:42:20.467179 [debug] [Thread-5 (]: Writing injected SQL for node "model.epoch_analytics.mart_country_power"
+[0m00:42:20.470039 [debug] [Thread-6 (]: Writing injected SQL for node "model.epoch_analytics.mart_owner_power"
+[0m00:42:20.471797 [debug] [Thread-6 (]: Began executing node model.epoch_analytics.mart_owner_power
+[0m00:42:20.474871 [debug] [Thread-6 (]: Writing runtime sql for node "model.epoch_analytics.mart_owner_power"
+[0m00:42:20.472407 [debug] [Thread-5 (]: Began executing node model.epoch_analytics.mart_country_power
+[0m00:42:20.477619 [debug] [Thread-5 (]: Writing runtime sql for node "model.epoch_analytics.mart_country_power"
+[0m00:42:20.479174 [debug] [Thread-6 (]: On model.epoch_analytics.mart_owner_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_owner_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_owner_power`
+  OPTIONS()
+  as select owner, sum(current_power_mw) as total_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+where owner is not null
+group by owner order by total_mw desc limit 10;
+
+
+[0m00:42:20.479942 [debug] [Thread-6 (]: Opening a new connection, currently in state init
+[0m00:42:20.480543 [debug] [Thread-5 (]: On model.epoch_analytics.mart_country_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_country_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_country_power`
+  OPTIONS()
+  as select country, sum(current_power_mw) as total_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers` group by country order by total_mw desc;
+
+
+[0m00:42:20.481126 [debug] [Thread-5 (]: Opening a new connection, currently in state init
+[0m00:42:22.921173 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:38cf069f-9cee-4649-941f-fd31e2549d5d&page=queryresults
+[0m00:42:23.010987 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:f6c01773-11f2-4975-aea9-059f4068383f&page=queryresults
+[0m00:42:23.703681 [debug] [Thread-6 (]: SQL status: OK in 0.782 seconds
+[0m00:42:23.708163 [debug] [Thread-6 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03EC4E670>]}
+[0m00:42:23.708685 [info ] [Thread-6 (]: 4 of 4 OK created sql view model epoch_ai_dataset.mart_owner_power ............. [[32mCREATE VIEW (0 processed)[0m in 3.24s]
+[0m00:42:23.709439 [debug] [Thread-6 (]: Finished running node model.epoch_analytics.mart_owner_power
+[0m00:42:23.748386 [debug] [Thread-5 (]: SQL status: OK in 0.737 seconds
+[0m00:42:23.754264 [debug] [Thread-5 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'd9a33a2c-073c-4a2b-a9aa-2117191960f1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03EC17850>]}
+[0m00:42:23.755113 [info ] [Thread-5 (]: 3 of 4 OK created sql view model epoch_ai_dataset.mart_country_power ........... [[32mCREATE VIEW (0 processed)[0m in 3.29s]
+[0m00:42:23.756075 [debug] [Thread-5 (]: Finished running node model.epoch_analytics.mart_country_power
+[0m00:42:23.757693 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m00:42:23.806482 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m00:42:23.806901 [debug] [MainThread]: Connection 'list_epoch-ai-data-center' was properly closed.
+[0m00:42:23.807250 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_epoch_ai_dataset' was properly closed.
+[0m00:42:23.807497 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_yearly_power' was properly closed.
+[0m00:42:23.807757 [debug] [MainThread]: Connection 'model.epoch_analytics.stg_data_centers' was properly closed.
+[0m00:42:23.808008 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_country_power' was properly closed.
+[0m00:42:23.808240 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_owner_power' was properly closed.
+[0m00:42:23.808560 [info ] [MainThread]: 
+[0m00:42:23.808993 [info ] [MainThread]: Finished running 4 view models in 0 hours 0 minutes and 11.74 seconds (11.74s).
+[0m00:42:23.810122 [debug] [MainThread]: Command end result
+[0m00:42:23.847190 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m00:42:23.851890 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m00:42:23.855976 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m00:42:23.862938 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\run_results.json
+[0m00:42:23.863276 [info ] [MainThread]: 
+[0m00:42:23.863720 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m00:42:23.864135 [info ] [MainThread]: 
+[0m00:42:23.864541 [info ] [MainThread]: Done. PASS=4 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=4
+[0m00:42:23.865549 [debug] [MainThread]: Command `dbt run` succeeded at 00:42:23.865448 after 15.54 seconds
+[0m00:42:23.865885 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E020E31400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E01855A120>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E03CB6ACF0>]}
+[0m00:42:23.866207 [debug] [MainThread]: Flushing usage events
+[0m00:42:25.528783 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:00:42.572060 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A1E195010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A1BC91590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A20ABB9D0>]}
+
+
+============================== 01:00:42.581152 | 8deccf0b-bc40-4fe3-9c82-ac5dc3c22901 ==============================
+[0m01:00:42.581152 [info ] [MainThread]: Running with dbt=1.12.5
+[0m01:00:42.582286 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'maximum_seed_size_mib': '1', 'printer_width': '80', 'write_json': 'True', 'empty': 'False', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\lexdw\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'invocation_command': 'dbt run', 'use_experimental_parser': 'False', 'use_colors': 'True', 'log_path': 'C:\\Users\\lexdw\\OneDrive\\Documents\\Default Project\\data-engineering-zoomcamp-2026\\04-analytics-engineering\\epoch_analytics\\logs'}
+[0m01:00:45.816038 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3C878B00>]}
+[0m01:00:45.892032 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A1BCA4AF0>]}
+[0m01:00:45.893379 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m01:00:46.902700 [debug] [MainThread]: checksum: 7ace3d800d7c6d8c85c7a384062ac357aed9d0797236fe53002107a382963fdc, vars: {}, profile: epoch_analytics, target: dev, version: 1.12.5
+[0m01:00:47.164377 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 1 files added, 0 files changed.
+[0m01:00:47.164939 [debug] [MainThread]: Partial parsing: added file: epoch_analytics://models\mart_build_velocity.sql
+[0m01:00:47.497417 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3CD89450>]}
+[0m01:00:47.589212 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m01:00:47.594548 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m01:00:47.636680 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m01:00:47.656988 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3D262210>]}
+[0m01:00:47.657713 [info ] [MainThread]: Found 5 models, 2 sources, 561 macros
+[0m01:00:47.658290 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3D266890>]}
+[0m01:00:47.661222 [info ] [MainThread]: 
+[0m01:00:47.661772 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m01:00:47.662267 [info ] [MainThread]: 
+[0m01:00:47.662992 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m01:00:47.669001 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center'
+[0m01:00:47.669576 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:00:50.538069 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_epoch-ai-data-center_epoch_ai_dataset'
+[0m01:00:50.538570 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:00:52.866258 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A20B56000>]}
+[0m01:00:52.866812 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m01:00:52.927110 [debug] [Thread-4 (]: Began running node model.epoch_analytics.mart_yearly_power
+[0m01:00:52.927896 [debug] [Thread-3 (]: Began running node model.epoch_analytics.mart_build_velocity
+[0m01:00:52.929350 [info ] [Thread-4 (]: 2 of 5 START sql view model epoch_ai_dataset.mart_yearly_power ................. [RUN]
+[0m01:00:52.930850 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_yearly_power'
+[0m01:00:52.928495 [debug] [Thread-5 (]: Began running node model.epoch_analytics.stg_data_centers
+[0m01:00:52.929990 [info ] [Thread-3 (]: 1 of 5 START sql view model epoch_ai_dataset.mart_build_velocity ............... [RUN]
+[0m01:00:52.933054 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_build_velocity'
+[0m01:00:52.933764 [debug] [Thread-3 (]: Began compiling node model.epoch_analytics.mart_build_velocity
+[0m01:00:52.931558 [debug] [Thread-4 (]: Began compiling node model.epoch_analytics.mart_yearly_power
+[0m01:00:52.932234 [info ] [Thread-5 (]: 3 of 5 START sql view model epoch_ai_dataset.stg_data_centers .................. [RUN]
+[0m01:00:52.945213 [debug] [Thread-3 (]: Writing injected SQL for node "model.epoch_analytics.mart_build_velocity"
+[0m01:00:52.948287 [debug] [Thread-4 (]: Writing injected SQL for node "model.epoch_analytics.mart_yearly_power"
+[0m01:00:52.949267 [debug] [Thread-5 (]: Acquiring new bigquery connection 'model.epoch_analytics.stg_data_centers'
+[0m01:00:52.950450 [debug] [Thread-5 (]: Began compiling node model.epoch_analytics.stg_data_centers
+[0m01:00:52.954391 [debug] [Thread-5 (]: Writing injected SQL for node "model.epoch_analytics.stg_data_centers"
+[0m01:00:52.956042 [debug] [Thread-3 (]: Began executing node model.epoch_analytics.mart_build_velocity
+[0m01:00:52.969181 [debug] [Thread-4 (]: Began executing node model.epoch_analytics.mart_yearly_power
+[0m01:00:52.985086 [debug] [Thread-5 (]: Began executing node model.epoch_analytics.stg_data_centers
+[0m01:00:53.025838 [debug] [Thread-4 (]: Writing runtime sql for node "model.epoch_analytics.mart_yearly_power"
+[0m01:00:53.027815 [debug] [Thread-3 (]: Writing runtime sql for node "model.epoch_analytics.mart_build_velocity"
+[0m01:00:53.031326 [debug] [Thread-5 (]: Writing runtime sql for node "model.epoch_analytics.stg_data_centers"
+[0m01:00:53.033732 [debug] [Thread-4 (]: On model.epoch_analytics.mart_yearly_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_yearly_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_yearly_power`
+  OPTIONS()
+  as select extract(year from date) as tahun, sum(power_mw) as total_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`timelines`
+where date is not null
+group by tahun order by tahun;
+
+
+[0m01:00:53.034479 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m01:00:53.035176 [debug] [Thread-5 (]: On model.epoch_analytics.stg_data_centers: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.stg_data_centers"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+  OPTIONS()
+  as select
+  name,
+  split(owner, ' #')[offset(0)] as owner,
+  country, current_power_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`data_centers`
+where country is not null;
+
+
+[0m01:00:53.037637 [debug] [Thread-5 (]: Opening a new connection, currently in state init
+[0m01:00:53.036086 [debug] [Thread-3 (]: On model.epoch_analytics.mart_build_velocity: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_build_velocity"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_build_velocity`
+  OPTIONS()
+  as with first_seen as (
+  select data_center, min(date) as start_date from `epoch-ai-data-center`.`epoch_ai_dataset`.`timelines` group by data_center
+),
+peak as (
+  select data_center, max(power_mw) as peak_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`timelines` group by data_center
+),
+peak_date as (
+  select t.data_center, min(t.date) as peak_date from `epoch-ai-data-center`.`epoch_ai_dataset`.`timelines` t
+  join peak p on t.data_center=p.data_center and t.power_mw=p.peak_mw
+  group by t.data_center
+)
+select extract(year from f.start_date) as tahun, avg(date_diff(p.peak_date, f.start_date, day)) as avg_days
+from first_seen f join peak_date p on f.data_center=p.data_center
+group by tahun order by tahun;
+
+
+[0m01:00:53.038504 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m01:00:55.530523 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:720b762a-0012-41e1-a0f6-238c9f4914fd&page=queryresults
+[0m01:00:55.553267 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:4b43097e-ab39-40f8-934b-cf5ee5e4fd58&page=queryresults
+[0m01:00:56.072335 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:3a2bd7e2-92bb-4ba7-a22f-ac052505b117&page=queryresults
+[0m01:00:56.265074 [debug] [Thread-3 (]: SQL status: OK in 0.711 seconds
+[0m01:00:56.336198 [debug] [Thread-5 (]: SQL status: OK in 0.805 seconds
+[0m01:00:56.409110 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3D286090>]}
+[0m01:00:56.409529 [debug] [Thread-5 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A1E647D80>]}
+[0m01:00:56.410229 [info ] [Thread-3 (]: 1 of 5 OK created sql view model epoch_ai_dataset.mart_build_velocity .......... [[32mCREATE VIEW (0 processed)[0m in 3.47s]
+[0m01:00:56.411628 [debug] [Thread-3 (]: Finished running node model.epoch_analytics.mart_build_velocity
+[0m01:00:56.410998 [info ] [Thread-5 (]: 3 of 5 OK created sql view model epoch_ai_dataset.stg_data_centers ............. [[32mCREATE VIEW (0 processed)[0m in 3.46s]
+[0m01:00:56.412462 [debug] [Thread-5 (]: Finished running node model.epoch_analytics.stg_data_centers
+[0m01:00:56.413015 [debug] [Thread-6 (]: Began running node model.epoch_analytics.mart_country_power
+[0m01:00:56.413359 [debug] [Thread-3 (]: Began running node model.epoch_analytics.mart_owner_power
+[0m01:00:56.413754 [info ] [Thread-6 (]: 4 of 5 START sql view model epoch_ai_dataset.mart_country_power ................ [RUN]
+[0m01:00:56.414668 [debug] [Thread-6 (]: Acquiring new bigquery connection 'model.epoch_analytics.mart_country_power'
+[0m01:00:56.415092 [debug] [Thread-6 (]: Began compiling node model.epoch_analytics.mart_country_power
+[0m01:00:56.416676 [debug] [Thread-6 (]: Writing injected SQL for node "model.epoch_analytics.mart_country_power"
+[0m01:00:56.414133 [info ] [Thread-3 (]: 5 of 5 START sql view model epoch_ai_dataset.mart_owner_power .................. [RUN]
+[0m01:00:56.417172 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.epoch_analytics.mart_build_velocity, now model.epoch_analytics.mart_owner_power)
+[0m01:00:56.417507 [debug] [Thread-3 (]: Began compiling node model.epoch_analytics.mart_owner_power
+[0m01:00:56.418946 [debug] [Thread-3 (]: Writing injected SQL for node "model.epoch_analytics.mart_owner_power"
+[0m01:00:56.419653 [debug] [Thread-6 (]: Began executing node model.epoch_analytics.mart_country_power
+[0m01:00:56.421978 [debug] [Thread-6 (]: Writing runtime sql for node "model.epoch_analytics.mart_country_power"
+[0m01:00:56.422659 [debug] [Thread-3 (]: Began executing node model.epoch_analytics.mart_owner_power
+[0m01:00:56.425425 [debug] [Thread-3 (]: Writing runtime sql for node "model.epoch_analytics.mart_owner_power"
+[0m01:00:56.426404 [debug] [Thread-6 (]: On model.epoch_analytics.mart_country_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_country_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_country_power`
+  OPTIONS()
+  as select country, sum(current_power_mw) as total_mw from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers` group by country order by total_mw desc;
+
+
+[0m01:00:56.427060 [debug] [Thread-6 (]: Opening a new connection, currently in state init
+[0m01:00:56.485552 [debug] [Thread-3 (]: On model.epoch_analytics.mart_owner_power: /* {"app": "dbt", "dbt_version": "1.12.5", "profile_name": "epoch_analytics", "target_name": "dev", "node_id": "model.epoch_analytics.mart_owner_power"} */
+
+
+  create or replace view `epoch-ai-data-center`.`epoch_ai_dataset`.`mart_owner_power`
+  OPTIONS()
+  as select owner, sum(current_power_mw) as total_mw
+from `epoch-ai-data-center`.`epoch_ai_dataset`.`stg_data_centers`
+where owner is not null
+group by owner order by total_mw desc limit 10;
+
+
+[0m01:00:56.486274 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m01:00:56.753498 [debug] [Thread-4 (]: SQL status: OK in 0.680 seconds
+[0m01:00:56.759629 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3D33D3B0>]}
+[0m01:00:56.760651 [info ] [Thread-4 (]: 2 of 5 OK created sql view model epoch_ai_dataset.mart_yearly_power ............ [[32mCREATE VIEW (0 processed)[0m in 3.83s]
+[0m01:00:56.761635 [debug] [Thread-4 (]: Finished running node model.epoch_analytics.mart_yearly_power
+[0m01:00:59.019522 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:d88e0a98-218a-4811-bf67-6c93f78d145f&page=queryresults
+[0m01:00:59.110969 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=epoch-ai-data-center&j=bq:US:8648e584-51b7-4226-b957-187aa6772bd4&page=queryresults
+[0m01:00:59.786426 [debug] [Thread-6 (]: SQL status: OK in 0.675 seconds
+[0m01:00:59.790704 [debug] [Thread-6 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3E9917D0>]}
+[0m01:00:59.791232 [info ] [Thread-6 (]: 4 of 5 OK created sql view model epoch_ai_dataset.mart_country_power ........... [[32mCREATE VIEW (0 processed)[0m in 3.38s]
+[0m01:00:59.791950 [debug] [Thread-6 (]: Finished running node model.epoch_analytics.mart_country_power
+[0m01:00:59.794334 [debug] [Thread-3 (]: SQL status: OK in 0.774 seconds
+[0m01:00:59.798315 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '8deccf0b-bc40-4fe3-9c82-ac5dc3c22901', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3D251FD0>]}
+[0m01:00:59.798827 [info ] [Thread-3 (]: 5 of 5 OK created sql view model epoch_ai_dataset.mart_owner_power ............. [[32mCREATE VIEW (0 processed)[0m in 3.38s]
+[0m01:00:59.799607 [debug] [Thread-3 (]: Finished running node model.epoch_analytics.mart_owner_power
+[0m01:00:59.801211 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m01:00:59.849752 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m01:00:59.850149 [debug] [MainThread]: Connection 'list_epoch-ai-data-center' was properly closed.
+[0m01:00:59.850401 [debug] [MainThread]: Connection 'list_epoch-ai-data-center_epoch_ai_dataset' was properly closed.
+[0m01:00:59.850748 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_yearly_power' was properly closed.
+[0m01:00:59.851053 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_owner_power' was properly closed.
+[0m01:00:59.851336 [debug] [MainThread]: Connection 'model.epoch_analytics.stg_data_centers' was properly closed.
+[0m01:00:59.851662 [debug] [MainThread]: Connection 'model.epoch_analytics.mart_country_power' was properly closed.
+[0m01:00:59.851994 [info ] [MainThread]: 
+[0m01:00:59.852450 [info ] [MainThread]: Finished running 5 view models in 0 hours 0 minutes and 12.19 seconds (12.19s).
+[0m01:00:59.853708 [debug] [MainThread]: Command end result
+[0m01:00:59.889347 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\manifest.json
+[0m01:00:59.894570 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\semantic_manifest.json
+[0m01:00:59.898968 [debug] [MainThread]: Wrote artifact OsiDocument to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\osi_document.json
+[0m01:00:59.906383 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\lexdw\OneDrive\Documents\Default Project\data-engineering-zoomcamp-2026\04-analytics-engineering\epoch_analytics\target\run_results.json
+[0m01:00:59.906781 [info ] [MainThread]: 
+[0m01:00:59.907323 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m01:00:59.907715 [info ] [MainThread]: 
+[0m01:00:59.908125 [info ] [MainThread]: Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=5
+[0m01:00:59.909151 [debug] [MainThread]: Command `dbt run` succeeded at 01:00:59.909052 after 17.58 seconds
+[0m01:00:59.909484 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3C9FB110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A3D035190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022A2081BAD0>]}
+[0m01:00:59.909819 [debug] [MainThread]: Flushing usage events
+[0m01:01:01.895326 [debug] [MainThread]: An error was encountered while trying to flush usage events

@@ -1,0 +1,1 @@
+select country, sum(current_power_mw) as total_mw from {{ ref('stg_data_centers') }} group by country order by total_mw desc
