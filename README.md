@@ -38,5 +38,10 @@ Prereqs: Terraform + gcloud auth, Docker, a Kestra server, dbt with the BigQuery
 - CI (`.github/workflows/ci.yml`): Terraform fmt + validate and Kestra YAML syntax on every push.
 - No committed state, keys, or build output (see `.gitignore`).
 
+## Latest verified run (Oct 2026)
+- Kestra flow 08: success end to end, BigQuery counts 93 and 548 match the ASSERTs.
+- dbt run: PASS 5 of 5. dbt test: PASS 14 of 14.
+- CI: green on every push (see Actions tab).
+
 ## My decision (memo)
 Malaysia leads APAC (Johor). Recommend Johor expansion + Batam next. Avg build 800 days (2024) vs 3000 (2019) – delivery faster now. Risk: grid + water.
