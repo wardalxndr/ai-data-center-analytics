@@ -44,4 +44,4 @@ Prereqs: Terraform + gcloud auth, Docker, a Kestra server, dbt with the BigQuery
 - CI: green on every push (see Actions tab).
 
 ## My decision (memo)
-Malaysia leads APAC (Johor). Recommend Johor expansion + Batam next. Avg build 800 days (2024) vs 3000 (2019) – delivery faster now. Risk: grid + water.
+Malaysia leads APAC (Johor). Recommend Johor expansion + Batam next. Avg build 900 days (2024) vs 3000 (2019) – delivery faster now. Risk: grid + water.
