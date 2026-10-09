@@ -24,9 +24,9 @@ tasks:
     inputFiles:
       data_centers.csv: "{{ outputs.extract_centers.uri }}"
     outputFiles:
-      - centers_clean.csv
+      - centers_clean.json
     script: |
-      import csv
+      import csv, json
       mapping = {
         "Name": "name",
         "Owner": "owner",
@@ -37,12 +37,24 @@ tasks:
         "Current chip types": "current_chip_types",
         "Address": "address"
       }
-      with open("data_centers.csv", newline="", encoding="utf-8") as fin, open("centers_clean.csv", "w", newline="", encoding="utf-8") as fout:
-        reader = csv.DictReader(fin)
-        writer = csv.DictWriter(fout, fieldnames=list(mapping.values()))
-        writer.writeheader()
-        for row in reader:
-          writer.writerow({v: row.get(k, "") for k, v in mapping.items()})
+      numeric = {"current_power_mw", "current_h100_equivalents", "current_total_capital_cost_billions"}
+      def convert(key, value):
+        value = (value or "").strip()
+        if key not in numeric:
+          return value
+        if value == "":
+          return None
+        try:
+          return int(value)
+        except ValueError:
+          pass
+        try:
+          return float(value.replace(",", ""))
+        except ValueError:
+          return None
+      with open("data_centers.csv", newline="", encoding="utf-8") as fin, open("centers_clean.json", "w", encoding="utf-8") as fout:
+        for row in csv.DictReader(fin):
+          fout.write(json.dumps({v: convert(v, row.get(k, "")) for k, v in mapping.items()}) + "\n")
 
   - id: upload_centers_raw
     type: io.kestra.plugin.gcp.gcs.Upload
@@ -55,12 +67,10 @@ tasks:
     type: io.kestra.plugin.gcp.bigquery.Load
     projectId: "{{ kv('GCP_PROJECT_ID') }}"
     serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
-    from: "{{ outputs.clean_centers.outputFiles['centers_clean.csv'] }}"
+    from: "{{ outputs.clean_centers.outputFiles['centers_clean.json'] }}"
     destinationTable: "{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers"
-    format: CSV
+    format: JSON
     autodetect: true
-    csvOptions:
-      skipLeadingRows: 1
     createDisposition: CREATE_IF_NEEDED
     writeDisposition: WRITE_TRUNCATE
 
@@ -74,9 +84,9 @@ tasks:
     inputFiles:
       timelines.csv: "{{ outputs.extract_timelines.uri }}"
     outputFiles:
-      - timelines_clean.csv
+      - timelines_clean.json
     script: |
-      import csv
+      import csv, json
       mapping = {
         "Data center": "data_center",
         "Date": "date",
@@ -84,12 +94,24 @@ tasks:
         "Power (MW)": "power_mw",
         "H100 equivalents": "h100_equivalents"
       }
-      with open("timelines.csv", newline="", encoding="utf-8") as fin, open("timelines_clean.csv", "w", newline="", encoding="utf-8") as fout:
-        reader = csv.DictReader(fin)
-        writer = csv.DictWriter(fout, fieldnames=list(mapping.values()))
-        writer.writeheader()
-        for row in reader:
-          writer.writerow({v: row.get(k, "") for k, v in mapping.items()})
+      numeric = {"power_mw", "h100_equivalents"}
+      def convert(key, value):
+        value = (value or "").strip()
+        if key not in numeric:
+          return value
+        if value == "":
+          return None
+        try:
+          return int(value)
+        except ValueError:
+          pass
+        try:
+          return float(value.replace(",", ""))
+        except ValueError:
+          return None
+      with open("timelines.csv", newline="", encoding="utf-8") as fin, open("timelines_clean.json", "w", encoding="utf-8") as fout:
+        for row in csv.DictReader(fin):
+          fout.write(json.dumps({v: convert(v, row.get(k, "")) for k, v in mapping.items()}) + "\n")
 
   - id: upload_timelines_raw
     type: io.kestra.plugin.gcp.gcs.Upload
@@ -102,12 +124,10 @@ tasks:
     type: io.kestra.plugin.gcp.bigquery.Load
     projectId: "{{ kv('GCP_PROJECT_ID') }}"
     serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
-    from: "{{ outputs.clean_timelines.outputFiles['timelines_clean.csv'] }}"
+    from: "{{ outputs.clean_timelines.outputFiles['timelines_clean.json'] }}"
     destinationTable: "{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines"
-    format: CSV
+    format: JSON
     autodetect: true
-    csvOptions:
-      skipLeadingRows: 1
     createDisposition: CREATE_IF_NEEDED
     writeDisposition: WRITE_TRUNCATE
 
@@ -123,7 +143,7 @@ tasks:
     projectId: "{{ kv('GCP_PROJECT_ID') }}"
     serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     sql: |
-      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 545 AS 'timelines row count drift, expected 545';
+      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 548 AS 'timelines row count drift, expected 548';
 
 triggers:
   - id: daily_epoch

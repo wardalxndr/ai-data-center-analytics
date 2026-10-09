@@ -8,7 +8,7 @@ Where is AI capacity growing, how fast to build, where next in APAC? US dominate
 
 ## Source (not mine)
 Epoch AI – AI Data Centers (CC-BY): https://epoch.ai/data/ai-data-centers
-- `data_centers.csv` (93 sites), `data_center_timelines.csv` (~545 rows)
+- `data_centers.csv` (93 sites), `data_center_timelines.csv` (548 rows, Oct 2026 snapshot)
 - Accessed Oct 2026. Analysis mine.
 
 ## Architecture (batch, daily 09:00 UTC)
@@ -27,7 +27,7 @@ Prereqs: Terraform + gcloud auth, Docker, a Kestra server, dbt with the BigQuery
 
 1. Provision: `terraform init && terraform apply` in the repo root (bucket + dataset, US).
 2. Values: in Kestra open Namespaces → zoomcamp → KV Store and add `GCP_PROJECT_ID` (value `epoch-ai-data-center`) and `GCP_SERVICE_ACCOUNT` (paste the full service account JSON, never commit it). Both are read via `kv()` because namespace Secrets need Enterprise Edition. Flow 08 also takes `bucket`/`dataset` inputs (defaults match step 1).
-3. Import `flows/04_postgres_epoch.yaml` (local path) and `flows/08_gcp_epoch.yaml` (GCP path) into Kestra, then Execute. Flow 08 uploads raw CSVs to GCS, loads curated tables to BigQuery, and ASSERTs row counts 93 / 545. A failed ASSERT means source drift, fix the column mapping before trusting the dashboard.
+3. Import `flows/04_postgres_epoch.yaml` (local path) and `flows/08_gcp_epoch.yaml` (GCP path) into Kestra, then Execute. Flow 08 uploads raw CSVs to GCS, loads curated newline-delimited JSON to BigQuery (immune to stray quotes and embedded newlines in source text), and ASSERTs row counts 93 / 548. A failed ASSERT means source drift, fix the column mapping before trusting the dashboard.
 4. Local Postgres path: `docker compose up -d`, then run flow 04 (inputs default to host localhost, db epoch, user epoch).
 5. dbt: copy `epoch_analytics/profiles.example.yml` into your dbt profiles as `epoch_analytics`, set `GOOGLE_APPLICATION_CREDENTIALS`, then `dbt run` (expect 5/5) and `dbt test` in `epoch_analytics`.
 6. Open the Looker link.

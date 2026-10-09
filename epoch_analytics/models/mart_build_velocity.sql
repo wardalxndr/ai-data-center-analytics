@@ -1,11 +1,11 @@
 with first_seen as (
-  select data_center, min(date) as start_date from {{ source('epoch','timelines') }} group by data_center
+  select data_center, min(cast(date as date)) as start_date from {{ source('epoch','timelines') }} group by data_center
 ),
 peak as (
   select data_center, max(power_mw) as peak_mw from {{ source('epoch','timelines') }} group by data_center
 ),
 peak_date as (
-  select t.data_center, min(t.date) as peak_date from {{ source('epoch','timelines') }} t
+  select t.data_center, min(cast(t.date as date)) as peak_date from {{ source('epoch','timelines') }} t
   join peak p on t.data_center=p.data_center and t.power_mw=p.peak_mw
   group by t.data_center
 )
