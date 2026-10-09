@@ -17,6 +17,10 @@ tasks:
   - id: extract_centers
     type: io.kestra.plugin.core.http.Download
     uri: https://epoch.ai/data/data_centers/data_centers.csv
+    retry:
+      type: constant
+      maxAttempts: 3
+      interval: PT30S
 
   - id: clean_centers
     type: io.kestra.plugin.scripts.python.Script
@@ -77,6 +81,10 @@ tasks:
   - id: extract_timelines
     type: io.kestra.plugin.core.http.Download
     uri: https://epoch.ai/data/data_centers/data_center_timelines.csv
+    retry:
+      type: constant
+      maxAttempts: 3
+      interval: PT30S
 
   - id: clean_timelines
     type: io.kestra.plugin.scripts.python.Script
