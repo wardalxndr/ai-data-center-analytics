@@ -26,7 +26,7 @@ Epoch AI – AI Data Centers (CC-BY): https://epoch.ai/data/ai-data-centers
 Prereqs: Terraform + gcloud auth, Docker, a Kestra server, dbt with the BigQuery adapter (`pip install dbt-bigquery`).
 
 1. Provision: `terraform init && terraform apply` in the repo root (bucket + dataset, US).
-2. Secrets: in Kestra KV Store set `GCP_PROJECT_ID`, in Secrets set `GCP_SERVICE_ACCOUNT` (service account JSON, never commit it). Flow 08 also takes `bucket`/`dataset` inputs (defaults match step 1).
+2. Secrets: in Kestra Secrets for namespace `zoomcamp`, add `GCP_PROJECT_ID` (value `epoch-ai-data-center`) and `GCP_SERVICE_ACCOUNT` (paste the full service account JSON, never commit it). Both are read via `secret()`. Flow 08 also takes `bucket`/`dataset` inputs (defaults match step 1).
 3. Import `flows/04_postgres_epoch.yaml` (local path) and `flows/08_gcp_epoch.yaml` (GCP path) into Kestra, then Execute. Flow 08 uploads raw CSVs to GCS, loads curated tables to BigQuery, and ASSERTs row counts 93 / 545. A failed ASSERT means source drift, fix the column mapping before trusting the dashboard.
 4. Local Postgres path: `docker compose up -d`, then run flow 04 (inputs default to host localhost, db epoch, user epoch).
 5. dbt: copy `epoch_analytics/profiles.example.yml` into your dbt profiles as `epoch_analytics`, set `GOOGLE_APPLICATION_CREDENTIALS`, then `dbt run` (expect 5/5) and `dbt test` in `epoch_analytics`.
