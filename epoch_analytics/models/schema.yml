@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_data_centers
+    description: Cleaned Epoch AI data centers, one row per site.
+    columns:
+      - name: name
+        tests:
+          - not_null
+      - name: country
+        tests:
+          - not_null
+  - name: mart_country_power
+    description: Total current power per country, biggest first.
+    columns:
+      - name: country
+        tests:
+          - unique
+          - not_null
+      - name: total_mw
+        tests:
+          - not_null
+  - name: mart_owner_power
+    description: Top 10 owners by total current power.
+    columns:
+      - name: owner
+        tests:
+          - unique
+          - not_null
+  - name: mart_yearly_power
+    description: Total timeline power per year.
+    columns:
+      - name: tahun
+        tests:
+          - unique
+          - not_null
+  - name: mart_build_velocity
+    description: Average days from first sighting to peak power, per year.
+    columns:
+      - name: tahun
+        tests:
+          - unique
+          - not_null
+      - name: avg_days
+        tests:
+          - not_null

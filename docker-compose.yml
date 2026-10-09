@@ -1,0 +1,17 @@
+# Local Postgres for the 04_postgres_epoch flow.
+# Kestra itself runs separately (see README). From the repo root:
+#   docker compose up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: epoch
+      POSTGRES_PASSWORD: epoch
+      POSTGRES_DB: epoch
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

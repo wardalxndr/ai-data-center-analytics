@@ -5,6 +5,18 @@ inputs:
   - id: dataset_url
     type: STRING
     defaults: https://epoch.ai/data/data_centers/data_centers.csv
+  - id: pg_host
+    type: STRING
+    defaults: localhost
+  - id: pg_db
+    type: STRING
+    defaults: epoch
+  - id: pg_user
+    type: STRING
+    defaults: epoch
+  - id: pg_password
+    type: STRING
+    defaults: epoch
 
 concurrency:
   limit: 1
@@ -87,9 +99,9 @@ tasks:
 pluginDefaults:
   - type: io.kestra.plugin.jdbc.postgresql
     values:
-      url: jdbc:postgresql://pgdatabase:5432/ny_taxi
-      username: root
-      password: root
+      url: jdbc:postgresql://{{ inputs.pg_host }}:5432/{{ inputs.pg_db }}
+      username: "{{ inputs.pg_user }}"
+      password: "{{ inputs.pg_password }}"
 
 triggers:
   - id: daily_epoch

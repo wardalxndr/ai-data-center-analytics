@@ -1,0 +1,16 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Kestra flow YAML syntax
+        run: python -c "import yaml,glob; [yaml.safe_load(open(f)) for f in sorted(glob.glob('flows/*.yaml'))]"
+      - uses: hashicorp/setup-terraform@v3
+      - name: Terraform fmt
+        run: terraform fmt -check -recursive
+      - name: Terraform validate
+        run: terraform init -backend=false && terraform validate

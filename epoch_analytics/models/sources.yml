@@ -5,4 +5,12 @@ sources:
     schema: epoch_ai_dataset
     tables:
       - name: data_centers
+        columns:
+          - name: name
+            tests:
+              - not_null
       - name: timelines
+        columns:
+          - name: data_center
+            tests:
+              - not_null

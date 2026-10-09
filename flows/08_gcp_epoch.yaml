@@ -1,0 +1,136 @@
+id: epoch_ai_gcp
+namespace: zoomcamp
+description: Epoch AI data centers, GCP path. Download CSVs, clean them, land raw copies in GCS, load curated tables to BigQuery, then assert row counts.
+
+inputs:
+  - id: bucket
+    type: STRING
+    defaults: epoch-ai-data-lake-ward
+  - id: dataset
+    type: STRING
+    defaults: epoch_ai_dataset
+
+concurrency:
+  limit: 1
+
+tasks:
+  - id: extract_centers
+    type: io.kestra.plugin.core.http.Download
+    uri: https://epoch.ai/data/data_centers/data_centers.csv
+
+  - id: clean_centers
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:3.11-slim
+    inputFiles:
+      data_centers.csv: "{{ outputs.extract_centers.uri }}"
+    outputFiles:
+      - centers_clean.csv
+    script: |
+      import csv
+      mapping = {
+        "Name": "name",
+        "Owner": "owner",
+        "Country": "country",
+        "Current power (MW)": "current_power_mw",
+        "Current H100 equivalents": "current_h100_equivalents",
+        "Current total capital cost (2025 USD billions)": "current_total_capital_cost_billions",
+        "Current chip types": "current_chip_types",
+        "Address": "address"
+      }
+      with open("data_centers.csv", newline="", encoding="utf-8") as fin, open("centers_clean.csv", "w", newline="", encoding="utf-8") as fout:
+        reader = csv.DictReader(fin)
+        writer = csv.DictWriter(fout, fieldnames=list(mapping.values()))
+        writer.writeheader()
+        for row in reader:
+          writer.writerow({v: row.get(k, "") for k, v in mapping.items()})
+
+  - id: upload_centers_raw
+    type: io.kestra.plugin.gcp.gcs.Upload
+    projectId: "{{ secret('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    from: "{{ outputs.extract_centers.uri }}"
+    to: "gs://{{ inputs.bucket }}/raw/data_centers.csv"
+
+  - id: load_centers
+    type: io.kestra.plugin.gcp.bigquery.Load
+    projectId: "{{ secret('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    from: "{{ outputs.clean_centers.outputFiles['centers_clean.csv'] }}"
+    destinationTable: "{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers"
+    format: CSV
+    autodetect: true
+    csvOptions:
+      skipLeadingRows: 1
+    createDisposition: CREATE_IF_NEEDED
+    writeDisposition: WRITE_TRUNCATE
+
+  - id: extract_timelines
+    type: io.kestra.plugin.core.http.Download
+    uri: https://epoch.ai/data/data_centers/data_center_timelines.csv
+
+  - id: clean_timelines
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:3.11-slim
+    inputFiles:
+      timelines.csv: "{{ outputs.extract_timelines.uri }}"
+    outputFiles:
+      - timelines_clean.csv
+    script: |
+      import csv
+      mapping = {
+        "Data center": "data_center",
+        "Date": "date",
+        "Construction status": "construction_status",
+        "Power (MW)": "power_mw",
+        "H100 equivalents": "h100_equivalents"
+      }
+      with open("timelines.csv", newline="", encoding="utf-8") as fin, open("timelines_clean.csv", "w", newline="", encoding="utf-8") as fout:
+        reader = csv.DictReader(fin)
+        writer = csv.DictWriter(fout, fieldnames=list(mapping.values()))
+        writer.writeheader()
+        for row in reader:
+          writer.writerow({v: row.get(k, "") for k, v in mapping.items()})
+
+  - id: upload_timelines_raw
+    type: io.kestra.plugin.gcp.gcs.Upload
+    projectId: "{{ secret('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    from: "{{ outputs.extract_timelines.uri }}"
+    to: "gs://{{ inputs.bucket }}/raw/data_center_timelines.csv"
+
+  - id: load_timelines
+    type: io.kestra.plugin.gcp.bigquery.Load
+    projectId: "{{ secret('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    from: "{{ outputs.clean_timelines.outputFiles['timelines_clean.csv'] }}"
+    destinationTable: "{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines"
+    format: CSV
+    autodetect: true
+    csvOptions:
+      skipLeadingRows: 1
+    createDisposition: CREATE_IF_NEEDED
+    writeDisposition: WRITE_TRUNCATE
+
+  - id: assert_center_count
+    type: io.kestra.plugin.gcp.bigquery.Query
+    projectId: "{{ secret('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    sql: |
+      ASSERT (SELECT COUNT(*) FROM `{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers`) = 93 AS 'data_centers row count drift, expected 93';
+
+  - id: assert_timeline_count
+    type: io.kestra.plugin.gcp.bigquery.Query
+    projectId: "{{ secret('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    sql: |
+      ASSERT (SELECT COUNT(*) FROM `{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 545 AS 'timelines row count drift, expected 545';
+
+pluginDefaults:
+  - type: io.kestra.plugin.gcp.bigquery.Query
+    values:
+      fetchType: NONE
+
+triggers:
+  - id: daily_epoch
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "0 9 * * *"

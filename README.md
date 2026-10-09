@@ -12,7 +12,9 @@ Epoch AI – AI Data Centers (CC-BY): https://epoch.ai/data/ai-data-centers
 - Accessed Oct 2026. Analysis mine.
 
 ## Architecture (batch, daily 09:00 UTC)
-Kestra `04_postgres_epoch` + `08_gcp_epoch` → GCS `gs://epoch-ai-data-lake-ward/raw/` → BigQuery `epoch-ai-data-center.epoch_ai_dataset` (data_centers CLUSTER BY country,owner; timelines PARTITION BY date) → dbt (stg + mart_country_power + mart_yearly_power + mart_owner_power + mart_build_velocity) → Looker
+- Local path: Kestra `04_postgres_epoch` → Postgres `epoch` (tables data_centers_raw, data_center_timelines_raw). Zero cloud cost, good for trying the cleaning logic.
+- GCP path: Kestra `08_gcp_epoch` → raw CSVs to GCS `gs://epoch-ai-data-lake-ward/raw/` → curated tables to BigQuery `epoch-ai-data-center.epoch_ai_dataset` (data_centers CLUSTER BY country,owner; timelines PARTITION BY date) → row count ASSERTs (93 / 545, the run fails loudly on drift).
+- Model: dbt (stg + mart_country_power + mart_yearly_power + mart_owner_power + mart_build_velocity, all covered by tests in `models/schema.yml`) → Looker
 
 ## Dashboard (2 required + 2 bonus)
 1. Total Power by Country – AI Data Centers (bar, categorical)
@@ -21,11 +23,20 @@ Kestra `04_postgres_epoch` + `08_gcp_epoch` → GCS `gs://epoch-ai-data-lake-war
 4. Map (bonus)
 
 ## How to run
-1. `terraform apply` in `01-docker-terraform` (bucket + dataset, US)
-2. Kestra: set KV GCP_PROJECT_ID/BUCKET/DATASET/LOCATION, Secrets GCP_CREDS, import YAMLs, Execute
-3. BigQuery: check COUNT 93 / 545
-4. dbt: `dbt run` in `epoch_analytics` (expect PASS=5)
-5. Open Looker link
+Prereqs: Terraform + gcloud auth, Docker, a Kestra server, dbt with the BigQuery adapter (`pip install dbt-bigquery`).
+
+1. Provision: `terraform init && terraform apply` in the repo root (bucket + dataset, US).
+2. Secrets: in Kestra KV Store set `GCP_PROJECT_ID`, in Secrets set `GCP_SERVICE_ACCOUNT` (service account JSON, never commit it). Flow 08 also takes `bucket`/`dataset` inputs (defaults match step 1).
+3. Import `flows/04_postgres_epoch.yaml` (local path) and `flows/08_gcp_epoch.yaml` (GCP path) into Kestra, then Execute. Flow 08 uploads raw CSVs to GCS, loads curated tables to BigQuery, and ASSERTs row counts 93 / 545. A failed ASSERT means source drift, fix the column mapping before trusting the dashboard.
+4. Local Postgres path: `docker compose up -d`, then run flow 04 (inputs default to host localhost, db epoch, user epoch).
+5. dbt: copy `epoch_analytics/profiles.example.yml` into your dbt profiles as `epoch_analytics`, set `GOOGLE_APPLICATION_CREDENTIALS`, then `dbt run` (expect 5/5) and `dbt test` in `epoch_analytics`.
+6. Open the Looker link.
+
+## Quality gates
+- `dbt test`: unique + not_null contracts on staging and every mart (see `models/schema.yml`). Source freshness is enforced in orchestration instead of dbt because the CSVs carry no ingest timestamp.
+- Row count ASSERTs inside flow 08 catch source drift at load time and fail the run.
+- CI (`.github/workflows/ci.yml`): Terraform fmt + validate and Kestra YAML syntax on every push.
+- No committed state, keys, or build output (see `.gitignore`).
 
 ## My decision (memo)
 Malaysia leads APAC (Johor). Recommend Johor expansion + Batam next. Avg build 800 days (2024) vs 3000 (2019) – delivery faster now. Risk: grid + water.

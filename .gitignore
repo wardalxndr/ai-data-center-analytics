@@ -1,1 +1,33 @@
-*.json
+# Terraform state, variables, and crash logs. Never commit these.
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!example.tfvars
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# dbt build artifacts. Reproducible via dbt run, not source.
+epoch_analytics/target/
+epoch_analytics/logs/
+epoch_analytics/dbt_packages/
+epoch_analytics/.user.yml
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Local env and credentials. Never commit keys.
+.env
+*.pem
+*-key.json
+credentials*.json
+service-account*.json
+
+# OS leftovers
+.DS_Store
+Thumbs.db

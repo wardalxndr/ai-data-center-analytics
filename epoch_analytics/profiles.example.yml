@@ -1,0 +1,13 @@
+# Copy this file to ~/.dbt/profiles.yml (or set PROFILE_DIR) and fill the blanks.
+# Needs the dbt-bigquery adapter: pip install dbt-bigquery
+epoch_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: epoch-ai-data-center
+      dataset: epoch_ai_dataset
+      location: US
+      # Path to the service account JSON key. Never commit the key itself.
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
