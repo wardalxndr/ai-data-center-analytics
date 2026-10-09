@@ -46,17 +46,17 @@ tasks:
 
   - id: upload_centers_raw
     type: io.kestra.plugin.gcp.gcs.Upload
-    projectId: "{{ secret('GCP_PROJECT_ID') }}"
-    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    projectId: "{{ kv('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     from: "{{ outputs.extract_centers.uri }}"
     to: "gs://{{ inputs.bucket }}/raw/data_centers.csv"
 
   - id: load_centers
     type: io.kestra.plugin.gcp.bigquery.Load
-    projectId: "{{ secret('GCP_PROJECT_ID') }}"
-    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    projectId: "{{ kv('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     from: "{{ outputs.clean_centers.outputFiles['centers_clean.csv'] }}"
-    destinationTable: "{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers"
+    destinationTable: "{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers"
     format: CSV
     autodetect: true
     csvOptions:
@@ -93,17 +93,17 @@ tasks:
 
   - id: upload_timelines_raw
     type: io.kestra.plugin.gcp.gcs.Upload
-    projectId: "{{ secret('GCP_PROJECT_ID') }}"
-    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    projectId: "{{ kv('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     from: "{{ outputs.extract_timelines.uri }}"
     to: "gs://{{ inputs.bucket }}/raw/data_center_timelines.csv"
 
   - id: load_timelines
     type: io.kestra.plugin.gcp.bigquery.Load
-    projectId: "{{ secret('GCP_PROJECT_ID') }}"
-    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    projectId: "{{ kv('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     from: "{{ outputs.clean_timelines.outputFiles['timelines_clean.csv'] }}"
-    destinationTable: "{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines"
+    destinationTable: "{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines"
     format: CSV
     autodetect: true
     csvOptions:
@@ -113,17 +113,17 @@ tasks:
 
   - id: assert_center_count
     type: io.kestra.plugin.gcp.bigquery.Query
-    projectId: "{{ secret('GCP_PROJECT_ID') }}"
-    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    projectId: "{{ kv('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     sql: |
-      ASSERT (SELECT COUNT(*) FROM `{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers`) = 93 AS 'data_centers row count drift, expected 93';
+      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers`) = 93 AS 'data_centers row count drift, expected 93';
 
   - id: assert_timeline_count
     type: io.kestra.plugin.gcp.bigquery.Query
-    projectId: "{{ secret('GCP_PROJECT_ID') }}"
-    serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}"
+    projectId: "{{ kv('GCP_PROJECT_ID') }}"
+    serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     sql: |
-      ASSERT (SELECT COUNT(*) FROM `{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 545 AS 'timelines row count drift, expected 545';
+      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 545 AS 'timelines row count drift, expected 545';
 
 triggers:
   - id: daily_epoch
