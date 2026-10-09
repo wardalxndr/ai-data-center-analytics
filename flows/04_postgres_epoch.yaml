@@ -54,6 +54,9 @@ tasks:
 
   - id: load_to_postgres
     type: io.kestra.plugin.jdbc.postgresql.CopyIn
+    url: jdbc:postgresql://{{ inputs.pg_host }}:5432/{{ inputs.pg_db }}
+    username: "{{ inputs.pg_user }}"
+    password: "{{ inputs.pg_password }}"
     format: CSV
     from: "{{outputs.transform.outputFiles['centers_clean.csv']}}"
     table: public.data_centers_raw
@@ -89,19 +92,14 @@ tasks:
 
   - id: load_timelines_to_postgres
     type: io.kestra.plugin.jdbc.postgresql.CopyIn
+    url: jdbc:postgresql://{{ inputs.pg_host }}:5432/{{ inputs.pg_db }}
+    username: "{{ inputs.pg_user }}"
+    password: "{{ inputs.pg_password }}"
     format: CSV
     from: "{{outputs.transform_timelines.outputFiles['timelines_clean.csv']}}"
     table: public.data_center_timelines_raw
     header: true
     columns: [data_center, date, construction_status, power_mw, h100_equivalents]
-
-
-pluginDefaults:
-  - type: io.kestra.plugin.jdbc.postgresql
-    values:
-      url: jdbc:postgresql://{{ inputs.pg_host }}:5432/{{ inputs.pg_db }}
-      username: "{{ inputs.pg_user }}"
-      password: "{{ inputs.pg_password }}"
 
 triggers:
   - id: daily_epoch

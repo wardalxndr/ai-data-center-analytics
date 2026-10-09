@@ -125,11 +125,6 @@ tasks:
     sql: |
       ASSERT (SELECT COUNT(*) FROM `{{ secret('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 545 AS 'timelines row count drift, expected 545';
 
-pluginDefaults:
-  - type: io.kestra.plugin.gcp.bigquery.Query
-    values:
-      fetchType: NONE
-
 triggers:
   - id: daily_epoch
     type: io.kestra.plugin.core.trigger.Schedule
