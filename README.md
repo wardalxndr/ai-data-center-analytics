@@ -19,7 +19,7 @@ Epoch AI – AI Data Centers (CC-BY): https://epoch.ai/data/ai-data-centers
 ## Dashboard (2 required + 2 bonus)
 1. Total Power by Country – AI Data Centers (bar, categorical)
 2. Average Days from Groundbreaking to Full Power – AI Data Centers (line, temporal)
-3. APAC Focus table + memo (Malaysia 661 MW, Indonesia 72 MW)
+3. APAC Focus table + memo (Malaysia 895 MW, Indonesia 72 MW)
 4. Map (bonus)
 
 ## How to run
