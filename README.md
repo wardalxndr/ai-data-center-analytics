@@ -4,7 +4,7 @@ Dashboard: https://datastudio.google.com/reporting/6192c6dc-90c3-45ae-990a-458f6
 Author: Ward (BINUS, AWS PM Intern APAC Data Center Delivery target)
 
 ## Problem
-Where is AI capacity growing, how fast to build, where next in APAC? US dominates 35GW, APAC only 4 countries tracked. Delivery must choose Johor vs Batam.
+Where is AI capacity growing, how fast to build, where next in APAC? US dominates at ~12GW, APAC only 4 countries tracked. Delivery must choose Johor vs Batam.
 
 ## Source (not mine)
 Epoch AI – AI Data Centers (CC-BY): https://epoch.ai/data/ai-data-centers
