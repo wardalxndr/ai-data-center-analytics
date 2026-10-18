@@ -6,7 +6,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check Kestra flow YAML syntax
         run: python -c "import yaml,glob; [yaml.safe_load(open(f)) for f in sorted(glob.glob('flows/*.yaml'))]"
       - uses: hashicorp/setup-terraform@v3
