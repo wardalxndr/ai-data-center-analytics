@@ -4,7 +4,9 @@ Dashboard: https://datastudio.google.com/reporting/6192c6dc-90c3-45ae-990a-458f6
 Author: Ward (BINUS, AWS PM Intern APAC Data Center Delivery target)
 
 ## Problem
-Where is AI capacity growing, how fast to build, where next in APAC? US dominates at ~12GW, APAC only 4 countries tracked. Delivery must choose Johor vs Batam.
+Where is AI capacity growing, how fast to build, and where should APAC delivery go next? The US dominates at ~12 GW while APAC tracks only 4 countries, and a delivery team cannot wait for a quarterly deck to decide where the next campus, grid connection and water contract should land.
+
+This project turns the Epoch AI data center snapshot (93 sites, 548 timeline rows) into a decision surface with three concrete questions: which countries hold the power, how build speed has changed (2024 builds reached full power in ~900 days on average vs ~3,000 for 2019 starts), and which APAC market wins the next investment. The readable output is the delivery memo at the bottom: Johor (Malaysia, 895 MW today) vs Batam (Indonesia, 72 MW, closer to Singapore). Every figure in it is backed by a tested dbt model and a live dashboard tile.
 
 ## Source (not mine)
 Epoch AI – AI Data Centers (CC-BY): https://epoch.ai/data/ai-data-centers
@@ -14,7 +16,7 @@ Epoch AI – AI Data Centers (CC-BY): https://epoch.ai/data/ai-data-centers
 ## Architecture (batch, daily 09:00 UTC)
 Kestra is the workflow orchestrator here (the Airflow equivalent in the course): it schedules the daily run, retries failed downloads, and versions the whole pipeline as YAML.
 - Local path: Kestra `04_postgres_epoch` → Postgres `epoch` (tables data_centers_raw, data_center_timelines_raw). Zero cloud cost, good for trying the cleaning logic.
-- GCP path: Kestra `08_gcp_epoch` → raw CSVs to GCS `gs://epoch-ai-data-lake-ward/raw/` → curated tables to BigQuery `epoch-ai-data-center.epoch_ai_dataset` (data_centers CLUSTER BY country,owner with no partitioning because a 93-row dimension gains nothing from it; timelines PARTITION BY date plus clustering because every mart filters by date) → row count ASSERTs (93 / 548, the run fails loudly on drift).
+- GCP path: Kestra `08_gcp_epoch` → raw CSVs to GCS `gs://epoch-ai-data-lake-ward/raw/` → curated tables to BigQuery `epoch-ai-data-center.epoch_ai_dataset` (data_centers CLUSTER BY country,owner with no partitioning because a 93-row dimension gains nothing from it; timelines PARTITION BY date plus clustering because every mart filters by date; both are enforced on the load tasks themselves, so a fresh project comes out optimized from the first run, see ADR 0004) → row count ASSERTs (93 / 548, the run fails loudly on drift).
 - Model: dbt (stg + mart_country_power + mart_yearly_power + mart_owner_power + mart_build_velocity, all covered by tests in `models/schema.yml`) → Looker
 
 ```mermaid
@@ -33,7 +35,7 @@ flowchart LR
 ## Design decisions (ADRs)
 Every non-obvious engineering choice is documented in [docs/adr](docs/adr/README.md) with its context, the honest downsides and the alternatives that were rejected. Highlights:
 - [0003](docs/adr/0003-row-count-asserts-drift-gate.md): why the flow ASSERTs exact row counts, and why freshness lives in orchestration, not dbt.
-- [0004](docs/adr/0004-unpartitioned-dimension-partitioned-series.md): why 93-row data_centers is deliberately unpartitioned while timelines is partitioned.
+- [0004](docs/adr/0004-unpartitioned-dimension-partitioned-series.md): why 93-row data_centers is deliberately unpartitioned while timelines is partitioned, and exactly which load properties implement it.
 - [0005](docs/adr/0005-ndjson-load-and-kv-secrets.md): why NDJSON instead of CSV, and why credentials live in Kestra KV (OSS has no Secrets).
 - [0006](docs/adr/0006-pinned-snapshot-and-rebasing.md): why the snapshot is pinned and what a rebase involves.
 
@@ -78,6 +80,7 @@ The raw GCS zone could not be measured with the loader key: it has create-only p
 ## Latest verified run (re-verified Oct 18, 2026)
 - Kestra flow 08: success end to end, BigQuery counts 93 and 548 match the ASSERTs.
 - dbt run: PASS 5 of 5. dbt test: PASS 14 of 14 (re-run Oct 18, 2026).
+- Table optimization verified Oct 18, 2026: the load config (autodetect + partitioning + clustering) was replayed against a scratch dataset and produced timelines PARTITION BY date + CLUSTER BY data_center and data_centers CLUSTER BY country,owner with rows 93/548; live table metadata matches (ADR 0004).
 - Dashboard tile scans measured for the cost table above (see `docs/dashboard.md`).
 - CI: green on every push (see Actions tab).
 
@@ -94,6 +97,7 @@ Real issues hit while building this, and their fixes:
 - Kestra says a secret is unavailable, or asks for Enterprise: namespace Secrets are Enterprise-only. Use the KV store + `kv()` instead (ADR 0005).
 - Flow 08 fails at the ASSERT: that is the drift gate working. Epoch changed the source; fix the column mapping and rebase (ADR 0006) before touching the ASSERT numbers.
 - `403 storage.objects.list` on the raw bucket: expected. The loader key can create objects but not list or read them (least privilege, ADR 0005).
+- Table partitioning/clustering missing on a fresh dataset: the properties live on the BigQuery load tasks in flow 08 (`timePartitioningField`, `clusteringFields`). `WRITE_TRUNCATE` preserves whatever the table was created with, so fixing the flow only helps on the create path (ADR 0004).
 - dbt cannot authenticate: set `GOOGLE_APPLICATION_CREDENTIALS` to the key JSON and give the service account BigQuery Data Editor + Job User.
 - `terraform destroy` refuses to delete the bucket: it should, unless `force_destroy = true`. Empty the bucket first, or set the flag knowingly (demo only).
 - CI is green but dbt was never run: true by design. CI validates Terraform and YAML only; run `make dbt-test` against a live warehouse before trusting changes.

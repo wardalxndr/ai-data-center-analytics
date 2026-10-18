@@ -67,6 +67,8 @@ tasks:
     from: "{{ outputs.extract_centers.uri }}"
     to: "gs://{{ inputs.bucket }}/raw/data_centers.csv"
 
+  # 93-row dimension: cluster by the filter columns, no partitioning (ADR 0004).
+  # The load job creates the table, so the optimization belongs here.
   - id: load_centers
     type: io.kestra.plugin.gcp.bigquery.Load
     projectId: "{{ kv('GCP_PROJECT_ID') }}"
@@ -75,6 +77,9 @@ tasks:
     destinationTable: "{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers"
     format: JSON
     autodetect: true
+    clusteringFields:
+      - country
+      - owner
     createDisposition: CREATE_IF_NEEDED
     writeDisposition: WRITE_TRUNCATE
 
@@ -128,6 +133,9 @@ tasks:
     from: "{{ outputs.extract_timelines.uri }}"
     to: "gs://{{ inputs.bucket }}/raw/data_center_timelines.csv"
 
+  # Time series: every mart filters/groups by date, so partition by it and
+  # cluster by site (ADR 0004). autodetect maps YYYY-MM-DD to DATE, which
+  # field partitioning requires.
   - id: load_timelines
     type: io.kestra.plugin.gcp.bigquery.Load
     projectId: "{{ kv('GCP_PROJECT_ID') }}"
@@ -136,6 +144,10 @@ tasks:
     destinationTable: "{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines"
     format: JSON
     autodetect: true
+    timePartitioningField: date
+    timePartitioningType: DAY
+    clusteringFields:
+      - data_center
     createDisposition: CREATE_IF_NEEDED
     writeDisposition: WRITE_TRUNCATE
 
