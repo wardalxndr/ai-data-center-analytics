@@ -67,7 +67,7 @@ tasks:
     from: "{{ outputs.extract_centers.uri }}"
     to: "gs://{{ inputs.bucket }}/raw/data_centers.csv"
 
-  # 93-row dimension: cluster by the filter columns, no partitioning (ADR 0004).
+  # 94-row dimension: cluster by the filter columns, no partitioning (ADR 0004).
   # The load job creates the table, so the optimization belongs here.
   - id: load_centers
     type: io.kestra.plugin.gcp.bigquery.Load
@@ -156,14 +156,14 @@ tasks:
     projectId: "{{ kv('GCP_PROJECT_ID') }}"
     serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     sql: |
-      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers`) = 93 AS 'data_centers row count drift, expected 93';
+      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.data_centers`) = 94 AS 'data_centers row count drift, expected 94';
 
   - id: assert_timeline_count
     type: io.kestra.plugin.gcp.bigquery.Query
     projectId: "{{ kv('GCP_PROJECT_ID') }}"
     serviceAccount: "{{ kv('GCP_SERVICE_ACCOUNT') }}"
     sql: |
-      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 548 AS 'timelines row count drift, expected 548';
+      ASSERT (SELECT COUNT(*) FROM `{{ kv('GCP_PROJECT_ID') }}.{{ inputs.dataset }}.timelines`) = 560 AS 'timelines row count drift, expected 560';
 
 triggers:
   - id: daily_epoch

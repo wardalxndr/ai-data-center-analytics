@@ -39,3 +39,21 @@ Treat the whole project as a **pinned snapshot**, dated in the README
   signal at all.
 - Snapshot the CSVs into the repo: possible, but they are Epoch's CC-BY
   data and the raw zone in GCS already keeps the exact loaded bytes.
+
+## Amendment (Oct 20, 2026): first rebase executed
+
+Upstream moved (93 → 94 sites, 548 → 560 timeline rows, Malaysia
+895 → 1,138 MW with 3 sites, US 11,851 MW / 84% of tracked power). The
+written rebase sequence was executed:
+
+- Re-downloaded the CSVs, inspected the new shape: no column-mapping
+  change needed; the pipeline computes cleanly on the new files.
+- ASSERTs updated in `flows/08_gcp_epoch.yaml` (94 / 560) and the PINNED
+  constants in `pipeline/make_dashboard_data.py` now match.
+- Every quoted number in the README, memo and dashboard was rebased,
+  including the build-speed claim: 2024 starts reach full power in
+  ~600 days vs ~1,800 for 2019 starts (was ~900 vs ~3,000 on the old
+  snapshot).
+- BigQuery re-run against the new counts is still pending (needs a GCP
+  session); the local dashboard marks no drift because its raw CSVs are
+  the new pin itself.

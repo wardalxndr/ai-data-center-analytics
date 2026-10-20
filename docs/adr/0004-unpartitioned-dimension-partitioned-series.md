@@ -61,3 +61,11 @@ Verified two ways (Oct 18, 2026):
 - Materialize the marts as partitioned tables (the pattern used in the
   sibling QRIS project): rejected here because the marts are tiny aggregates;
   the partitioning that matters is on the 548-row time series they read.
+
+## Amendment (Oct 20, 2026)
+
+Snapshot rebased from 93/548 to 94/560 (ADR 0006 amendment). The decision
+and its rationale are unchanged: the dimension is still a ~94-row table
+where partitioning buys nothing, and the time series still reads better
+partitioned by date. Row counts in the verification notes above stay as
+they were recorded historically.

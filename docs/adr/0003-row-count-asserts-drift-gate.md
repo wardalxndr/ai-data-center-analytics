@@ -13,8 +13,11 @@ here: there is nothing to compare against `loaded_at`.
 
 After loading curated tables in flow 08, ASSERT exact row counts:
 
-- `data_centers`: 93 rows
-- `timelines`: 548 rows
+- `data_centers`: 94 rows
+- `timelines`: 560 rows
+
+(Amendment Oct 20, 2026: rebased from the original 93 / 548 pin; see
+ADR 0006 for the rebase record.)
 
 A mismatch fails the run loudly, before dbt runs. Freshness lives in
 orchestration (the daily schedule + this gate), not in dbt.

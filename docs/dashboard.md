@@ -9,16 +9,19 @@ so Looker reads live data; refreshing = re-run flow 08 + `dbt run`.
 
 | Tile | Requirement | Backing mart | Design note |
 |---|---|---|---|
-| Total Power by Country | 1, bar / categorical | `mart_country_power` | Reads the 93-row dimension only; scans ~1.3 KB per refresh |
+| Total Power by Country | 1, bar / categorical | `mart_country_power` | Reads the 94-row dimension only; scans ~1.3 KB per refresh |
 | Avg Days from Groundbreaking to Full Power | 2, line / temporal | `mart_build_velocity` | Computes per-site start and peak dates from `timelines`; scans ~19.5 KB per refresh |
-| APAC Focus table + memo | 3, deliverable | `mart_owner_power` / `mart_country_power` | The Johor vs Batam decision view (Malaysia 895 MW, Indonesia 72 MW) |
+| APAC Focus table + memo | 3, deliverable | `mart_owner_power` / `mart_country_power` | The Johor vs Batam decision view (Malaysia 1,138 MW, Indonesia 72 MW) |
 | Map | 4, bonus | `data_centers` | Site locations for the delivery story |
+| Streamlit one-pager (new) | 5, app | `data/dashboard_data.json` | Overview + drill-down pages (Sites / Map / Owners / Countries / Trends), see `dashboard/app.py` |
 
 ## Verified numbers (re-verified Oct 18, 2026)
 
 Checked against BigQuery directly:
 
-- `data_centers`: 93 rows; `timelines`: 548 rows (both match the flow ASSERTs).
+- `data_centers`: 93 rows; `timelines`: 548 rows (historical, Oct 18).
+  Rebased to 94 / 560 on Oct 20 (ADR 0006 amendment); BigQuery re-run
+  against the new counts pending.
 - `dbt run`: PASS 5 of 5; `dbt test`: PASS 14 of 14.
 - Measured scan cost per full dashboard load: 1,315 + 19,543 bytes (~21 KB),
   effect = $0.0000001 at $6.25/TiB on-demand. Effectively free, and measured,
@@ -27,11 +30,12 @@ Checked against BigQuery directly:
 ## Refreshing the dashboard
 
 1. Run Kestra flow `08_gcp_epoch` (uploads raw to GCS, loads curated NDJSON,
-   ASSERTs 93 / 548).
+   ASSERTs 94 / 560).
 2. `dbt run` then `dbt test` in `epoch_analytics/` (expect 5/5 and 14/14).
 3. Looker is live: no extract schedule, no manual refresh.
 
 ## Snapshot note
 
-All figures describe the Oct 2026 Epoch AI snapshot. Upstream updates trip
-the ASSERTs first; see ADR 0006 for the rebase procedure.
+All figures describe the Oct 2026 Epoch AI snapshot (rebased Oct 20 to
+94 sites / 560 timeline rows). Upstream updates trip the ASSERTs first;
+see ADR 0006 for the rebase procedure and the rebase record.
