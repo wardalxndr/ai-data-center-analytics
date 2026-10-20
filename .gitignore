@@ -31,3 +31,6 @@ service-account*.json
 # OS leftovers
 .DS_Store
 Thumbs.db
+
+# Epoch raw CSVs are live downloads (ADR 0006); only the dashboard data pack is committed
+data/raw/
