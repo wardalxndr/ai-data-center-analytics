@@ -39,11 +39,12 @@ Every non-obvious engineering choice is documented in [docs/adr](docs/adr/README
 - [0005](docs/adr/0005-ndjson-load-and-kv-secrets.md): why NDJSON instead of CSV, and why credentials live in Kestra KV (OSS has no Secrets).
 - [0006](docs/adr/0006-pinned-snapshot-and-rebasing.md): why the snapshot is pinned and what a rebase involves.
 
-## Dashboard (2 required + 2 bonus)
+## Dashboard (2 required + 3 bonus)
 1. Total Power by Country – AI Data Centers (bar, categorical)
 2. Average Days from Groundbreaking to Full Power – AI Data Centers (line, temporal)
 3. APAC Focus table + memo (Malaysia 1,138 MW, Indonesia 72 MW)
 4. Map (bonus)
+5. Streamlit one-pager (bonus): local web app with Overview + Sites / Map / Owners / Countries / Trends drill-downs, reads `data/dashboard_data.json` built by `pipeline/make_dashboard_data.py`
 
 Tile design, verified numbers and refresh steps: [docs/dashboard.md](docs/dashboard.md).
 
@@ -56,6 +57,7 @@ Prereqs: Terraform + gcloud auth, Docker, a Kestra server, dbt with the BigQuery
 4. Local Postgres path: `docker compose up -d`, then run flow 04 (inputs default to host localhost, db epoch, user epoch).
 5. dbt: copy `epoch_analytics/profiles.example.yml` into your dbt profiles as `epoch_analytics`, set `GOOGLE_APPLICATION_CREDENTIALS`, then `dbt run` (expect 5/5) and `dbt test` in `epoch_analytics`.
 6. Open the Looker link.
+7. Streamlit app (optional, no cloud needed): `pip install -r dashboard/requirements.txt`, then `streamlit run dashboard/app.py`. If the pinned snapshot was rebased, the app marks the drift instead of hiding it.
 
 ## Cost (measured, not estimated)
 All numbers from the actual runs of this project (BigQuery US on-demand pricing).
@@ -103,4 +105,4 @@ Real issues hit while building this, and their fixes:
 - CI is green but dbt was never run: true by design. CI validates Terraform and YAML only; run `make dbt-test` against a live warehouse before trusting changes.
 
 ## My decision (memo)
-Malaysia leads APAC (Johor). Recommend Johor expansion + Batam next. Avg build 900 days (2024) vs 3000 (2019) – delivery faster now. Risk: grid + water.
+Malaysia leads APAC (Johor). Recommend Johor expansion + Batam next. Avg build ~600 days (2024) vs ~1,800 (2019) – delivery faster now (rebased with ADR 0006; measured in `mart_build_velocity`: 598 vs 1,809 days). Risk: grid + water.
